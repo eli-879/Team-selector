@@ -269,6 +269,10 @@ body {
 	width: 50%;
 }
 
+.column.is-6.active {
+	flex: 1 1 auto;
+}
+
 .names {
 	padding: 0px;
 	margin: 0px;
@@ -347,8 +351,19 @@ body {
 }
 
 .info {
+	display: none;
 	position: relative;
 	animation: opac 0.8s;
+}
+
+.info.active {
+	display: block;
+}
+
+.resized-container {
+	display: flex;
+	flex: 1 1 auto;
+	margin-top: 20px;
 }
 
 /* Characters Page */

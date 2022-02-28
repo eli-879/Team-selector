@@ -67,12 +67,12 @@
 
 				<div class="b-tabs">
 					<div class="tabs">
-						<button id="tab1" , class="tab active" onclick="openInfoTab('HowToPlay', 'tab1')">How To Play</button>
-						<button id="tab2" , class="tab" onclick="openInfoTab('GameMechanics', 'tab2')">Game Mechanics</button>
+						<button id="tab1" , class="tab active">How To Play</button>
+						<button id="tab2" , class="tab">Game Mechanics</button>
 					</div>
 
 					<section class="tab-content">
-						<div id="HowToPlay" class="info" style="display: block">
+						<div id="HowToPlay" class="info active">
 							<h2 id="infotitle">How To Play</h2>
 							<p>If you are on phone, it is recommended that you use landscape mode.</p>
 							<p>Enter names of participants/choices into the text box on the right with one name/item per line.</p>
@@ -87,7 +87,7 @@
 							<p>Credit to LF2.net for the sprites.</p>
 						</div>
 
-						<div id="GameMechanics" , class="info" , style="display: none">
+						<div id="GameMechanics" , class="info">
 							<h2 id="infotitle">Game Mechanics</h2>
 							<p><b style="color: red">Red Text:</b> Indicates name of character.</p>
 							<p><b style="color: lime">Green Bar:</b> Indicates current HP. Set at 100 for all characters.</p>
@@ -116,6 +116,8 @@
 					contenteditable="true"
 					,
 					placeholder="Enter one name/item per line here (maximum of 24 items)"
+					,
+					rows="24"
 				></textarea>
 				<button id="start">Start</button>
 			</div>

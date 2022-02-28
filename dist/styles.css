@@ -1,0 +1,452 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Roboto";
+	padding: 0;
+	margin: 0;
+	background: #181a18;
+	color: white;
+}
+
+.navbar {
+	font-family: "Permanent Marker", cursive;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	position: relative;
+	justify-content: space-between;
+	align-items: center;
+	height: 7.5%;
+	background-color: #0e1111;
+	z-index: 100;
+	--background-color: #0e1111;
+	--border-size: 2px;
+	--accent-color: white;
+}
+
+.navbar .a.underline.web-name {
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding: 1.4rem;
+	z-index: 4;
+}
+
+.navbar-links ul {
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+.navbar-links li {
+	list-style: none;
+}
+
+.navbar-links li a {
+	text-decoration: none;
+	color: white;
+	padding: 1.4rem;
+	display: block;
+	font-size: 1.25rem;
+}
+
+.a {
+	text-decoration: none;
+	display: block;
+	position: relative;
+	text-align: center;
+	color: white;
+	margin: 0;
+}
+
+.a.underline::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: var(--border-size);
+	background-color: var(--accent-color);
+	transition: transform 300ms ease-in-out;
+
+	transform: scaleX(0);
+}
+
+.a.underline:hover::before,
+.a.underline:focus::before {
+	transform: scaleX(1);
+}
+
+.toggle-button {
+	position: absolute;
+	top: 1.6rem;
+	right: 1rem;
+	display: none;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 30px;
+	height: 21px;
+}
+
+.toggle-button .bar {
+	height: 3px;
+	width: 100%;
+	background-color: white;
+	border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+	.toggle-button {
+		display: flex;
+	}
+
+	.navbar-links {
+		display: none;
+		width: 100%;
+	}
+}
+
+.mobile-nav {
+	display: block;
+	position: fixed;
+	left: 0;
+	bottom: 100%;
+	width: 100%;
+	min-height: 100vh;
+	z-index: 99;
+	background-color: black;
+	padding-top: 120px;
+	transition: 0.4s;
+}
+.mobile-nav.active {
+	bottom: 0;
+}
+
+.mobile-nav .a {
+	display: block;
+	text-align: center;
+	width: 100%;
+	max-width: 200px;
+	margin: 0 auto 16px;
+	padding: 12px 16px;
+	text-decoration: none;
+}
+
+.mobile-nav .a:hover {
+	background-color: white;
+	color: black;
+	transition: background-color 1s, color 1s;
+}
+
+@keyframes change-text {
+	0% {
+		content: "Got Too Many Choices?";
+		opacity: 0%;
+	}
+	33% {
+		content: "Too Many Things to Choose From?";
+		opacity: 0%;
+	}
+	66% {
+		content: "We Got You.";
+		opacity: 0%;
+	}
+	100% {
+		content: "Got Too Many Choices?";
+		opacity: 0%;
+	}
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0%;
+	}
+	50% {
+		opacity: 100%;
+	}
+
+	100% {
+		opacity: 100%;
+	}
+}
+
+.front {
+	font-family: "Permanent Marker", cursive;
+	position: relative;
+	height: 92.5vh;
+	text-align: center;
+
+	padding: 10vh;
+}
+
+.front .border {
+	height: 100%;
+	border: 5px solid white;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center; /* align horizontal */
+	align-items: center; /* align vertical */
+}
+
+.front .border span {
+	display: none;
+	align-items: center;
+}
+
+.front .border::after {
+	content: "Got Too Many Choices?";
+	font-size: xx-large;
+	color: white;
+	margin: 0;
+	opacity: 0%;
+	line-height: 1.5;
+	display: inline-block;
+	vertical-align: middle;
+	animation: change-text 12s 2.1s linear infinite, fade-in 4s linear infinite;
+}
+
+.front .border h1 {
+	font-size: xx-large;
+	margin: 0;
+	line-height: 1.5;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+@keyframes up-and-down {
+	0% {
+		top: 73vh;
+	}
+	70% {
+		top: 72vh;
+	}
+	85% {
+		top: 74vh;
+	}
+	93% {
+		top: 72vh;
+	}
+	100% {
+		top: 73vh;
+	}
+}
+
+.front .arrow-icon {
+	position: absolute;
+	transform: translate(-50%, -50%);
+
+	animation: up-and-down 1.8s infinite;
+}
+
+.front .arrow-icon:hover {
+	cursor: pointer;
+}
+
+.filler {
+	display: none;
+	width: 100%;
+	height: 98vh;
+}
+
+.columns {
+	display: flex;
+	height: 100%;
+	padding-top: 2.5vh;
+}
+
+.column.is-3 {
+	width: 25%;
+	padding-left: 2vh;
+	padding-right: 2vh;
+}
+
+.column.is-6 {
+	flex: none;
+	width: 50%;
+}
+
+.names {
+	padding: 0px;
+	margin: 0px;
+}
+
+.textarea {
+	display: block;
+	max-width: 100%;
+	min-width: 100%;
+	padding: 0.625em;
+	resize: vertical;
+	border: 1px solid transparent;
+	box-shadow: inset 0 1px 2px rgb(10 10 10 / 10%);
+}
+
+#entries {
+	overflow: auto;
+	float: right;
+	height: 380px;
+	border: 2px solid #dbdbdb;
+}
+
+#gameScreen {
+	width: 100%;
+
+	border: 1px solid white;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -webkit-crisp-edges;
+	image-rendering: pixelated;
+	image-rendering: crisp-edges;
+}
+
+#recents {
+	margin: 25px;
+}
+
+.tabs {
+	border-bottom: 1px solid white;
+}
+
+.tab {
+	text-decoration: none;
+	padding: 10px;
+	border: none;
+	background-color: black;
+	color: white;
+	border-top: 1px solid white;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+}
+
+.tab:hover,
+.tab:focus {
+	background-color: white;
+	color: black;
+	transition: background-color 0.5s, color 0.5s;
+}
+
+.tab.active {
+	background-color: white;
+	color: black;
+	border-top: 1px solid white;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+
+	transition: background-color 0.5s, color 0.5s;
+}
+
+@keyframes opac {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.info {
+	position: relative;
+	animation: opac 0.8s;
+}
+
+/* Characters Page */
+
+.title {
+	font-family: "Permanent Marker", cursive;
+	align-items: center;
+	text-align: center;
+
+	animation: animate-title-text 1s linear infinite alternate;
+	--background-color: #181a18;
+}
+
+@keyframes animate-title-text {
+	0% {
+		text-shadow: 4px 4px red;
+	}
+
+	100% {
+		text-shadow: 4px 4px lime;
+	}
+}
+
+.title h2 {
+	position: relative;
+	font-size: 3vw;
+	color: white;
+	margin: 10px;
+}
+
+.title h1 {
+	margin: 0;
+	font-size: 7vw;
+}
+
+.characters-body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.characters_list {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	margin: auto;
+
+	max-width: 1440px;
+
+	font-size: 100%;
+	padding-left: 75px;
+	padding-right: 75px;
+}
+
+.card {
+	font-family: "Permanent Marker", cursive;
+	transition: 0.3s;
+	overflow: hidden;
+	padding-top: 20px;
+	padding-right: 20px;
+}
+
+@media (max-width: 750px) {
+	.card {
+		flex: 1 1 50%;
+		max-width: 50%;
+		font-size: 3.5vw;
+	}
+}
+
+@media (min-width: 750px) {
+	.card {
+		flex: 1 1 33.3333%;
+		max-width: 33.3333%;
+		font-size: 16px;
+	}
+}
+
+@media (min-width: 1000px) {
+	.card {
+		flex: 1 1 25%;
+		max-width: 25%;
+		font-size: 18px;
+	}
+}
+
+.card .inner {
+	overflow: hidden;
+}
+
+.card:hover {
+	transform: scale(1.1);
+}
+
+/* Add some padding inside the card container */
+.container {
+	color: black;
+	border: 1px solid black;
+	background-color: white;
+	text-align: center;
+}

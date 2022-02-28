@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Arena of Choices</title>
+
+		<link href="styles.css" rel="stylesheet" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet" />
+		<script src="main.js" defer></script>
+	</head>
+
+	<body>
+		<nav class="navbar">
+			<a href="index.html" class="a underline web-name">Arena of Choices</a>
+
+			<a href="#" class="toggle-button">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</a>
+
+			<div class="navbar-links">
+				<ul>
+					<li>
+						<a href="history.html" , class="a underline">Recent</a>
+					</li>
+					<li>
+						<a href="characters.html" , class="a underline">Characters</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<nav class="mobile-nav">
+			<a href="history.html" , class="a underline">Recent</a>
+			<a href="characters.html" , class="a underline">Characters</a>
+		</nav>
+
+		<h2 id="recents">Recent Arena Showdowns</h2>
+		<br />
+
+		<!--javascript that gets data from the data base and uses javascript to display items-->
+		<script>
+			async function getData() {
+				const response = await fetch("/api");
+				const data = await response.json();
+
+				for (item of data) {
+					const root = document.createElement("div");
+					const startOrder = document.createElement("div");
+					const deaths = document.createElement("div");
+					const time = document.createElement("div");
+
+					startOrder.textContent = `Starting Order: ${item.beginning} `;
+					deaths.textContent = `Deaths: ${item.deathListNames} `;
+
+					const dateString = new Date(item.timestamp).toLocaleString();
+					time.textContent = "Time: " + dateString;
+
+					const br = document.createElement("br");
+
+					root.append(startOrder, deaths, time, br);
+
+					root.style.margin = "25px";
+
+					document.body.append(root);
+				}
+			}
+
+			getData();
+		</script>
+	</body>
+</html>

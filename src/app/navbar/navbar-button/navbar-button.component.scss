@@ -1,0 +1,27 @@
+.navbar__link {
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+
+  color: rgb(255, 255, 255);
+  border-bottom: 0px solid white;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+
+    height: var(--border-size);
+    background-color: var(--accent-color);
+    transition: transform 300ms ease-in-out;
+    transform: scaleX(0);
+  }
+}
+
+.navbar__link:hover:before,
+.navbar__link:focus:before {
+  transform: scaleX(1);
+}

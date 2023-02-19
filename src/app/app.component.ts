@@ -1,9 +1,9 @@
-import { NxWelcomeComponent } from './nx-welcome.component';
 import { Component } from '@angular/core';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent],
+  imports: [NavbarComponent],
   selector: 'arena-of-choices-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],

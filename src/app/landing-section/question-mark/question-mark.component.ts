@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,4 +9,9 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./question-mark.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QuestionMarkComponent {}
+export class QuestionMarkComponent {
+  @Input() rotation!: string;
+  @Input() left!: string;
+  @Input() top!: string;
+  @Input() size!: string;
+}

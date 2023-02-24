@@ -1,6 +1,6 @@
 .landing-section {
-  background-color: #181a18;
-  height: 100vh;
+  background-color: #02014d;
+  height: 90svh;
   color: white;
   display: flex;
   flex-direction: column;
@@ -13,8 +13,23 @@
   justify-content: center;
   flex-grow: 1;
   transition: 1s;
+  overflow: auto;
+  position: relative;
 }
 
 .landing-section__info-header {
-  font-size: 64px;
+  font-size: clamp(2.5rem, 5vw + 1rem, 3rem);
+  max-height: 100%;
+}
+
+.landing-section__spacer {
+  aspect-ratio: 900/150;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.layer1 {
+  background-image: url('../../assets/layered-waves-haikei\(1\).svg');
 }

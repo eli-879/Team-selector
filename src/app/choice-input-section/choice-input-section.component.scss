@@ -1,0 +1,18 @@
+.input {
+  height: 100svh;
+  background-color: rgb(71, 71, 255);
+  color: white;
+  display: grid;
+}
+
+.input__text-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  border: 1px solid red;
+}
+
+.input__list-area {
+  border: 1px solid red;
+}

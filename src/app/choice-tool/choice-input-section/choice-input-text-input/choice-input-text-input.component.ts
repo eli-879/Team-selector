@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChoiceToolStore } from '../../store/choice-tool.store';
 
 @Component({
   selector: 'arena-of-choices-choice-input-text-input',
@@ -9,4 +10,12 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./choice-input-text-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChoiceInputTextInputComponent {}
+export class ChoiceInputTextInputComponent {
+  constructor(private choiceToolStore: ChoiceToolStore) {}
+
+  public addChoice(choice: string) {
+    if (choice.trim()) {
+      this.choiceToolStore.addChoice(choice);
+    }
+  }
+}

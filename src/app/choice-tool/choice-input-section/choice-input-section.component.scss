@@ -15,4 +15,20 @@
 
 .input__list-area {
   border: 1px solid red;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 10px;
+}
+
+.input__choice {
+  aspect-ratio: 5/ 1;
+  display: flex;
+  align-items: center;
+  padding: 5%;
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+arena-of-choices-choice-input-text-input {
+  width: 80%;
 }

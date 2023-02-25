@@ -1,0 +1,6 @@
+<div class="text-input">
+  <input type="text" class="text-input__input" #choice />
+  <button (click)="addChoice(choice.value); choice.value = ''">
+    Add choice
+  </button>
+</div>

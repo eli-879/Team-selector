@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChoiceInputTextInputComponent } from './choice-input-text-input/choice-input-text-input.component';
+import { ChoiceToolStore } from '../store/choice-tool.store';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'arena-of-choices-choice-input-section',
@@ -10,4 +12,9 @@ import { ChoiceInputTextInputComponent } from './choice-input-text-input/choice-
   styleUrls: ['./choice-input-section.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChoiceInputSectionComponent {}
+export class ChoiceInputSectionComponent {
+  public choices$: Observable<string[]>;
+  constructor(private choiceToolStore: ChoiceToolStore) {
+    this.choices$ = this.choiceToolStore.choices$;
+  }
+}

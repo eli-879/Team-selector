@@ -4,11 +4,13 @@
     </div>
     <div class="input__list-area" *ngIf="choices$ | async; let choices">
         <div class="input__list-title">Choices</div>
-        <div class="input__list-choices">
-            <arena-of-choices-choice-input-card
-                *ngFor="let choice of choices"
-                [choice]="choice"
-            ></arena-of-choices-choice-input-card>
+        <div class="input__list-choices-body">
+            <div class="input__list-cards">
+                <arena-of-choices-choice-input-card
+                    *ngFor="let choice of choices"
+                    [choice]="choice"
+                ></arena-of-choices-choice-input-card>
+            </div>
         </div>
     </div>
 </div>

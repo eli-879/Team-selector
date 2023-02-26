@@ -1,5 +1,11 @@
 <div class="text-input">
-    <input type="text" class="text-input__input" #choice />
+    <input
+        type="text"
+        class="text-input__input"
+        #choice
+        (keyup.enter)="addChoice(choice.value); choice.value = ''"
+        placeholder="Enter choice..."
+    />
     <button (click)="addChoice(choice.value); choice.value = ''">
         Add choice
     </button>

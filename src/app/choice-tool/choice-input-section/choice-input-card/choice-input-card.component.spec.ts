@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavbarComponent } from './navbar.component';
+import { ChoiceInputCardComponent } from './choice-input-card.component';
 
-describe('NavbarComponent', () => {
-    let component: NavbarComponent;
-    let fixture: ComponentFixture<NavbarComponent>;
+describe('ChoiceInputCardComponent', () => {
+    let component: ChoiceInputCardComponent;
+    let fixture: ComponentFixture<ChoiceInputCardComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NavbarComponent],
+            imports: [ChoiceInputCardComponent],
         }).compileComponents();
 
-        fixture = TestBed.createComponent(NavbarComponent);
+        fixture = TestBed.createComponent(ChoiceInputCardComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

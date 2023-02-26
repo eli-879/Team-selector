@@ -5,14 +5,18 @@ import { ChoiceInputSectionComponent } from './choice-input-section/choice-input
 import { ChoiceToolStore } from './store/choice-tool.store';
 
 @Component({
-  selector: 'arena-of-choices-choice-tool',
-  standalone: true,
-  imports: [CommonModule, CanvasSectionComponent, ChoiceInputSectionComponent],
-  templateUrl: './choice-tool.component.html',
-  styleUrls: ['./choice-tool.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ChoiceToolStore],
+    selector: 'arena-of-choices-choice-tool',
+    standalone: true,
+    imports: [
+        CommonModule,
+        CanvasSectionComponent,
+        ChoiceInputSectionComponent,
+    ],
+    templateUrl: './choice-tool.component.html',
+    styleUrls: ['./choice-tool.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [ChoiceToolStore],
 })
 export class ChoiceToolComponent {
-  constructor(private ChoiceToolStore: ChoiceToolStore) {}
+    constructor(private ChoiceToolStore: ChoiceToolStore) {}
 }

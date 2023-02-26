@@ -1,35 +1,35 @@
 .landing-section {
-  background-color: #02014d;
-  height: 90svh;
-  color: white;
-  display: flex;
-  flex-direction: column;
+    background-color: #02014d;
+    height: 90svh;
+    color: white;
+    display: flex;
+    flex-direction: column;
 }
 
 .landing-section__info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-  transition: 1s;
-  overflow: auto;
-  position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    transition: 1s;
+    overflow: auto;
+    position: relative;
 }
 
 .landing-section__info-header {
-  font-size: clamp(2.5rem, 5vw + 1rem, 3rem);
-  max-height: 100%;
+    font-size: clamp(2.5rem, 5vw + 1rem, 3rem);
+    max-height: 100%;
 }
 
 .landing-section__spacer {
-  aspect-ratio: 900/150;
-  width: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+    aspect-ratio: 900/150;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .layer1 {
-  background-image: url('../../assets/layered-waves-haikei\(1\).svg');
+    background-image: url('../../assets/layered-waves-haikei\(1\).svg');
 }

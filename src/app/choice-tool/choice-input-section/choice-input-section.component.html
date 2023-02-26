@@ -1,8 +1,11 @@
 <div class="input">
-  <div class="input__text-area">
-    <arena-of-choices-choice-input-text-input></arena-of-choices-choice-input-text-input>
-  </div>
-  <div class="input__list-area" *ngIf="choices$ | async; let choices">
-    <div *ngFor="let choice of choices" class="input__choice">{{ choice }}</div>
-  </div>
+    <div class="input__text-area">
+        <arena-of-choices-choice-input-text-input></arena-of-choices-choice-input-text-input>
+    </div>
+    <div class="input__list-area" *ngIf="choices$ | async; let choices">
+        <arena-of-choices-choice-input-card
+            *ngFor="let choice of choices"
+            [choice]="choice"
+        ></arena-of-choices-choice-input-card>
+    </div>
 </div>

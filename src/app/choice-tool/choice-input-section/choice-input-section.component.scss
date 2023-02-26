@@ -1,34 +1,32 @@
 .input {
-  height: 100svh;
-  background-color: rgb(71, 71, 255);
-  color: white;
-  display: grid;
+    height: 100svh;
+    background-color: rgb(71, 71, 255);
+    color: white;
 }
 
 .input__text-area {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100px;
-  border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    border: 1px solid red;
 }
 
 .input__list-area {
-  border: 1px solid red;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  column-gap: 10px;
-}
+    border: 1px solid red;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 
-.input__choice {
-  aspect-ratio: 5/ 1;
-  display: flex;
-  align-items: center;
-  padding: 5%;
-  background-color: #1e1e1e;
-  color: #fff;
+    max-height: 80%;
 }
 
 arena-of-choices-choice-input-text-input {
-  width: 80%;
+    width: 80%;
+}
+
+arena-of-choices-choice-input-card {
+    width: 350px;
+    height: 100px;
 }

@@ -1,3 +1,3 @@
 export interface ChoiceToolState {
-  choices: string[];
+    choices: string[];
 }

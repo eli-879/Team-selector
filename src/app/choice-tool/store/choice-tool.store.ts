@@ -5,19 +5,19 @@ import { ChoiceToolState } from './choice-tool.state';
 
 @Injectable()
 export class ChoiceToolStore extends ComponentStore<ChoiceToolState> {
-  constructor() {
-    super({ choices: [] });
-  }
+    constructor() {
+        super({ choices: [] });
+    }
 
-  public readonly choices$: Observable<string[]> = this.select(
-    (state) => state.choices
-  );
+    public readonly choices$: Observable<string[]> = this.select(
+        (state) => state.choices
+    );
 
-  // ** CHOICES ** //
+    // ** CHOICES ** //
 
-  public readonly addChoice = this.updater(
-    (state, choice: string): ChoiceToolState => ({
-      choices: [...state.choices, choice],
-    })
-  );
+    public readonly addChoice = this.updater(
+        (state, choice: string): ChoiceToolState => ({
+            choices: [...state.choices, choice],
+        })
+    );
 }

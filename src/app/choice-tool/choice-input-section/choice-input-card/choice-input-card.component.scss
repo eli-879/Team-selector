@@ -1,6 +1,6 @@
 .input-card {
     display: grid;
-
+    grid-template-columns: 1fr 4fr;
     padding: 25px;
     background-color: #1e1e1e;
     color: #fff;

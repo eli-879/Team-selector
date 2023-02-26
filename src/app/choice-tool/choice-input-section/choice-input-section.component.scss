@@ -2,24 +2,44 @@
     height: 100svh;
     background-color: rgb(71, 71, 255);
     color: white;
+    display: flex;
+    flex-direction: column;
 }
 
 .input__text-area {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
-    border: 1px solid red;
+    height: 10%;
 }
 
 .input__list-area {
-    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 10px;
+    flex-wrap: wrap;
+    max-height: 100%;
+}
+
+.input__list-title {
+    display: flex;
+    font-size: 64px;
+    justify-content: center;
+}
+
+.input__list-choices {
+    background-color: rgb(95, 95, 249);
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    flex-grow: 1;
     justify-content: center;
-
-    max-height: 80%;
+    align-content: flex-start;
+    max-height: 90%;
+    overflow: auto;
+    margin: 0 100px 100px 100px;
+    height: 600px;
 }
 
 arena-of-choices-choice-input-text-input {

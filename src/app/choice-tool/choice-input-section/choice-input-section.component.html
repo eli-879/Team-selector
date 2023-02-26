@@ -3,9 +3,12 @@
         <arena-of-choices-choice-input-text-input></arena-of-choices-choice-input-text-input>
     </div>
     <div class="input__list-area" *ngIf="choices$ | async; let choices">
-        <arena-of-choices-choice-input-card
-            *ngFor="let choice of choices"
-            [choice]="choice"
-        ></arena-of-choices-choice-input-card>
+        <div class="input__list-title">Choices</div>
+        <div class="input__list-choices">
+            <arena-of-choices-choice-input-card
+                *ngFor="let choice of choices"
+                [choice]="choice"
+            ></arena-of-choices-choice-input-card>
+        </div>
     </div>
 </div>

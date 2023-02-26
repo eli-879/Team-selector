@@ -1,5 +1,13 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    Input,
+    ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChoiceCard } from 'src/app/core/models/choice-card.interface';
 
 @Component({
     selector: 'arena-of-choices-choice-input-card',
@@ -9,6 +17,13 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['./choice-input-card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChoiceInputCardComponent {
-    @Input() public choice!: string;
+export class ChoiceInputCardComponent implements AfterViewInit {
+    @Input() public choice!: ChoiceCard;
+    @ViewChild('canvas') canvas!: ElementRef;
+
+    public ngAfterViewInit(): void {
+        const context = this.canvas.nativeElement.getContext('2d');
+        context.drawImage(this.choice.image[0], 0, 0, 80, 80, 0, 0, 300, 150);
+        console.log('HI');
+    }
 }

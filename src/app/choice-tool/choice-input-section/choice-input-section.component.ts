@@ -4,6 +4,7 @@ import { ChoiceInputTextInputComponent } from './choice-input-text-input/choice-
 import { ChoiceToolStore } from '../store/choice-tool.store';
 import { ChoiceInputCardComponent } from './choice-input-card/choice-input-card.component';
 import { Observable } from 'rxjs/internal/Observable';
+import { ChoiceCard } from 'src/app/core/models/choice-card.interface';
 
 @Component({
     selector: 'arena-of-choices-choice-input-section',
@@ -18,7 +19,7 @@ import { Observable } from 'rxjs/internal/Observable';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChoiceInputSectionComponent {
-    public choices$: Observable<string[]>;
+    public choices$: Observable<ChoiceCard[]>;
     constructor(private choiceToolStore: ChoiceToolStore) {
         this.choices$ = this.choiceToolStore.choices$;
     }

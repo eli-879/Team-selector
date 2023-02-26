@@ -1,5 +1,5 @@
 .input {
-    height: 100svh;
+    min-height: 100svh;
     background-color: rgb(71, 71, 255);
     color: white;
     display: flex;
@@ -29,25 +29,20 @@
 
 .input__list-choices-body {
     background-color: rgb(95, 95, 249);
+    box-sizing: border-box;
     display: flex;
-    flex-grow: 1;
-    justify-content: center;
-    align-items: center;
-    max-height: 90%;
-    overflow: auto;
-    margin: 0 100px 100px 100px;
+
+    margin: 0 50px 50px 50px;
     height: auto;
-    height: 500px;
+    max-height: 700px;
+    overflow: auto;
 }
 
 .input__list-cards {
     display: flex;
     flex-wrap: wrap;
-    margin: auto;
-    max-width: 1440px;
-    gap: 10px;
-    overflow: auto;
-    height: auto;
+    width: 100%;
+    padding-left: 30px;
 }
 
 arena-of-choices-choice-input-text-input {
@@ -55,6 +50,9 @@ arena-of-choices-choice-input-text-input {
 }
 
 arena-of-choices-choice-input-card {
-    width: 350px;
-    height: 100px;
+    box-sizing: border-box;
+    flex: 1 1 33%;
+    max-width: 33%;
+
+    padding: 20px 20px 20px 0;
 }

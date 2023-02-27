@@ -28,7 +28,7 @@ export class ChoiceInputTextInputComponent {
         if (assetImages !== null) {
             this.choiceToolStore.addChoice({
                 name: choice,
-                image: assetImages,
+                images: assetImages,
                 type: assetType,
             });
         }

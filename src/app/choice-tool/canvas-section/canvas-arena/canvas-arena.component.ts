@@ -20,6 +20,7 @@ import { Character } from '../characters/character';
 import { DamageSplat } from '../collision/damagesplat';
 import { CharacterStates } from '../character-properties/character-states.enum';
 import { Collision } from '../collision/collision';
+import { ChoiceStats } from 'src/app/core/models/choice-stats.interface';
 
 @Component({
     selector: 'arena-of-choices-canvas-arena',
@@ -62,6 +63,7 @@ export class CanvasArenaComponent implements OnInit {
 
     // store all char at beginning
     public beginning: Character[] = [];
+    public choiceStats: ChoiceStats[] = [];
 
     // arrays to store names and actual objects of dead chars
     public deathListNames: string[] = [];
@@ -108,6 +110,9 @@ export class CanvasArenaComponent implements OnInit {
         });
 
         this.characterList = [...this.generateCharacters()];
+        this.choiceStats = [...this.generateChoiceStats(this.characterList)];
+        this.choiceToolStore.updateChoiceStats(this.choiceStats);
+
         this.players = this.beginning.length;
     }
 
@@ -132,6 +137,24 @@ export class CanvasArenaComponent implements OnInit {
             characters.push(char);
         }
         return characters;
+    }
+
+    private generateChoiceStats(characters: Character[]) {
+        const characterStats: ChoiceStats[] = [];
+        for (const character of characters) {
+            const characterStat = {
+                id: character.id,
+                choice: character.name,
+                health: character.health,
+                maxHealth: character.maxHealth,
+                characterType: character.characterType,
+                images: this.assetManager.getCharacterAssets(
+                    character.characterType
+                ) as HTMLImageElement[],
+            };
+            characterStats.push(characterStat);
+        }
+        return characterStats;
     }
 
     private shuffleArray(array: Position[]) {
@@ -398,6 +421,7 @@ export class CanvasArenaComponent implements OnInit {
             obj1.hit(obj2, step);
             this.updateStatus(obj1, obj2);
             this.updateHealth(obj2, rand);
+            this.updateChoiceStats(obj2.getID(), rand);
             return [obj2, rand];
 
             //vice versa
@@ -405,6 +429,8 @@ export class CanvasArenaComponent implements OnInit {
             obj2.hit(obj1, step);
             this.updateStatus(obj2, obj1);
             this.updateHealth(obj1, rand);
+            this.updateChoiceStats(obj1.getID(), rand);
+
             return [obj1, rand];
 
             // if both characters have their attack ready, it will be a 50/50 on who gets hit
@@ -415,11 +441,15 @@ export class CanvasArenaComponent implements OnInit {
                 obj1.hit(obj2, step);
                 this.updateStatus(obj1, obj2);
                 this.updateHealth(obj2, rand);
+                this.updateChoiceStats(obj2.getID(), rand);
+
                 return [obj2, rand];
             } else {
                 obj2.hit(obj1, step);
                 this.updateStatus(obj2, obj1);
                 this.updateHealth(obj1, rand);
+                this.updateChoiceStats(obj1.getID(), rand);
+
                 return [obj1, rand];
             }
         }
@@ -532,5 +562,19 @@ export class CanvasArenaComponent implements OnInit {
         //  obj2 is the hittee (getting hit)
 
         obj2.minusHealth(dmg);
+    }
+
+    private updateChoiceStats(id: number, dmg: number) {
+        const choiceStat = this.choiceStats.find(
+            (element) => element.id === id
+        );
+
+        if (choiceStat === undefined) {
+            return;
+        }
+
+        choiceStat.health -= dmg;
+
+        this.choiceToolStore.updateChoiceStats(this.choiceStats);
     }
 }

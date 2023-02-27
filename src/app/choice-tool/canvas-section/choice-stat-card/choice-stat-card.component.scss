@@ -1,0 +1,70 @@
+.choice-stat-card {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-areas: 'canvas info';
+    padding: 25px;
+    background-color: #1e1e1e;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.choice-stat-card::before {
+    background: radial-gradient(
+        800px circle at 100px 100px,
+        rgba(255, 255, 255, 0.06),
+        transparent 40%
+    );
+    border-radius: inherit;
+    content: '';
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 2;
+}
+
+.choice-stat-card__canvas-container {
+    grid-area: canvas;
+    grid-column: 1;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.choice-stat-card__canvas {
+    width: 150px;
+    height: 150px;
+}
+
+.choice-stat-card__info {
+    grid-area: info;
+    grid-column: 2;
+    display: flex;
+    font-size: 48px;
+    align-items: center;
+    margin-left: 25px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    overflow: auto;
+}
+
+.choice-stat-card__choice-name {
+    width: 20%;
+}
+
+.choice-stat-card__max-health {
+    box-sizing: border-box;
+    flex: 1 1;
+    border: 1px solid red;
+    height: 100%;
+}
+
+.choice-stat-card__current-health {
+    background-color: red;
+    height: 100%;
+}

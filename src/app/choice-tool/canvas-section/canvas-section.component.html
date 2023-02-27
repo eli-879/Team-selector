@@ -2,3 +2,10 @@
     Canvas
     <arena-of-choices-canvas-arena></arena-of-choices-canvas-arena>
 </div>
+<div class="choice-stats">
+    <arena-of-choices-choice-stat-card
+        *ngFor="let stat of choiceStats$ | async"
+        [choiceStat]="stat"
+        [health]="stat.health"
+    ></arena-of-choices-choice-stat-card>
+</div>

@@ -3,6 +3,7 @@ import { Directions } from '../character-properties/directions.enum';
 import { CharacterStates } from '../character-properties/character-states.enum';
 import { Vector } from '../character-properties/vector.interface';
 import { SpriteDict } from '../character-properties/sprite-dict.interface';
+import { CharacterAssetType } from '../../store/types/asset-types.type';
 
 export abstract class Character {
     public gameHeight: number;
@@ -48,6 +49,7 @@ export abstract class Character {
     public abstract imageAttacking: HTMLImageElement;
     public abstract imageWinning: HTMLImageElement;
     public abstract timeforAttackAnimation: number;
+    public abstract characterType: CharacterAssetType;
 
     constructor(
         gameWidth: number,
@@ -94,7 +96,7 @@ export abstract class Character {
 
         // character attributes
         this.maxHealth = 100;
-        this.health = 10;
+        this.health = 100;
         this.dmg = 10;
     }
 

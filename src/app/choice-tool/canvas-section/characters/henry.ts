@@ -1,3 +1,4 @@
+import { CharacterAssetType } from '../../store/types/asset-types.type';
 import { Position } from '../character-properties/position.interface';
 import { SpriteDict } from '../character-properties/sprite-dict.interface';
 import { Character } from './character';
@@ -8,6 +9,7 @@ export class Henry extends Character {
     public imageWinning: HTMLImageElement;
     public spriteDict: SpriteDict;
     public timeforAttackAnimation: number;
+    public characterType: CharacterAssetType;
 
     constructor(
         gameWidth: number,
@@ -23,6 +25,7 @@ export class Henry extends Character {
         this.image = this.assets[0];
         this.imageAttacking = this.assets[1];
         this.imageWinning = this.assets[2];
+        this.characterType = 'henry';
 
         // custom column/row coords from sprite sheet
         this.spriteDict = {

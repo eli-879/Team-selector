@@ -2,6 +2,6 @@ import { CharacterAssetType } from 'src/app/choice-tool/store/types/asset-types.
 
 export interface ChoiceCard {
     name: string;
-    image: HTMLImageElement[];
+    images: HTMLImageElement[];
     type: CharacterAssetType;
 }

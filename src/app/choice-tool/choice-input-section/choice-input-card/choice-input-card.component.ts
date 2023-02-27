@@ -23,7 +23,7 @@ export class ChoiceInputCardComponent implements AfterViewInit {
 
     public ngAfterViewInit(): void {
         const context = this.canvas.nativeElement.getContext('2d');
-        context.drawImage(this.choice.image[0], 0, 0, 80, 80, 0, 0, 300, 150);
+        context.drawImage(this.choice.images[0], 0, 0, 80, 80, 0, 0, 300, 150);
         console.log('HI');
     }
 }

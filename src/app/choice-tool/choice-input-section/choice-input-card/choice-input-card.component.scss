@@ -1,6 +1,7 @@
 .input-card {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 20% 80%;
+    grid-template-areas: 'canvas info';
     padding: 25px;
     background-color: #1e1e1e;
     color: #fff;
@@ -27,14 +28,31 @@
     z-index: 2;
 }
 
+.input-card__canvas-container {
+    grid-area: canvas;
+    grid-column: 1;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
 .input-card__canvas {
     width: 150px;
     height: 150px;
 }
 
 .input-card__info {
+    grid-area: info;
+    grid-column: 2;
     display: flex;
     font-size: 48px;
     align-items: center;
     margin-left: 25px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    overflow: auto;
+}
+
+.input-card__choice-name {
+    max-width: 100%;
 }

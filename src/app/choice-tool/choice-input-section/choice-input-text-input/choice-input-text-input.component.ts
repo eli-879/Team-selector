@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChoiceToolStore } from '../../store/choice-tool.store';
-import { ChoiceCard } from 'src/app/core/models/choice-card.interface';
-import { CharacterAssetType } from '../../store/types/asset-types.type';
 import { AssetManagerService } from 'src/app/asset-manager.service';
 
 @Component({
@@ -31,6 +29,7 @@ export class ChoiceInputTextInputComponent {
             this.choiceToolStore.addChoice({
                 name: choice,
                 image: assetImages,
+                type: assetType,
             });
         }
     }

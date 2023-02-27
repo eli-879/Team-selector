@@ -1,9 +1,10 @@
-import { Position } from '../character-properties/position.interface.js';
-import { SpriteDict } from '../character-properties/sprite-dict.interface.js';
-import Character from './character.js';
+import { Position } from '../character-properties/position.interface';
+import { SpriteDict } from '../character-properties/sprite-dict.interface';
+import { Character } from './character';
 
 export class Firzen extends Character {
     public image: HTMLImageElement;
+    public imageAttacking: HTMLImageElement;
     public imageWinning: HTMLImageElement;
     public spriteDict: SpriteDict;
     public timeforAttackAnimation: number;
@@ -20,6 +21,7 @@ export class Firzen extends Character {
         super(gameWidth, gameHeight, name, pos, id, assets, ctx);
 
         this.image = this.assets[0];
+        this.imageAttacking = this.assets[0];
         this.imageWinning = this.assets[1];
 
         // custom column/row coords from sprite sheet
@@ -39,6 +41,10 @@ export class Firzen extends Character {
             winning: [
                 [4, 0],
                 [10, 0],
+            ],
+            dead: [
+                [0, 3],
+                [5, 3],
             ],
         };
 

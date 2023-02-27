@@ -4,7 +4,7 @@ import { CharacterStates } from '../character-properties/character-states.enum';
 import { Vector } from '../character-properties/vector.interface';
 import { SpriteDict } from '../character-properties/sprite-dict.interface';
 
-export default abstract class Character {
+export abstract class Character {
     public gameHeight: number;
     public gameWidth: number;
     public id: number;
@@ -45,6 +45,7 @@ export default abstract class Character {
 
     public abstract spriteDict: SpriteDict;
     public abstract image: HTMLImageElement;
+    public abstract imageAttacking: HTMLImageElement;
     public abstract imageWinning: HTMLImageElement;
     public abstract timeforAttackAnimation: number;
 
@@ -93,7 +94,7 @@ export default abstract class Character {
 
         // character attributes
         this.maxHealth = 100;
-        this.health = 100;
+        this.health = 10;
         this.dmg = 10;
     }
 
@@ -160,9 +161,12 @@ export default abstract class Character {
         switch (state) {
             case CharacterStates.RUNNING:
                 sprite = this.getSpriteConstantLoop(CharacterStates.RUNNING);
+                this.drawOntoCanvas(ctx, sprite, this.image);
                 break;
             case CharacterStates.ATTACKING:
                 sprite = this.getSpriteOneLoop(CharacterStates.ATTACKING);
+                this.drawOntoCanvas(ctx, sprite, this.imageAttacking);
+
                 break;
             case CharacterStates.KNOCKBACKED:
                 sprite = this.getSpriteOneLoop(CharacterStates.KNOCKBACKED);
@@ -173,6 +177,8 @@ export default abstract class Character {
                         ctx.measureText('KBed').width / 2,
                     this.position.y - 10
                 );
+                this.drawOntoCanvas(ctx, sprite, this.image);
+
                 break;
             case CharacterStates.WINNING:
                 sprite = this.getSpriteConstantLoop(CharacterStates.WINNING);
@@ -184,14 +190,23 @@ export default abstract class Character {
                         ctx.measureText('WINNER').width / 2,
                     this.position.y - 10
                 );
+                this.drawOntoCanvas(ctx, sprite, this.imageWinning);
+
                 break;
             case CharacterStates.DEAD:
-                sprite = this.getSpriteOneLoop(CharacterStates.KNOCKBACKED);
+                sprite = this.getSpriteOneLoop(CharacterStates.DEAD);
+                this.drawOntoCanvas(ctx, sprite, this.image);
         }
+    }
 
+    public drawOntoCanvas(
+        ctx: CanvasRenderingContext2D,
+        sprite: Position,
+        image: HTMLImageElement
+    ) {
         if (this.facing == Directions.RIGHT) {
             ctx.drawImage(
-                this.image,
+                image,
                 sprite.x,
                 sprite.y,
                 80,
@@ -204,7 +219,7 @@ export default abstract class Character {
         } else {
             ctx.scale(-1, 1);
             ctx.drawImage(
-                this.image,
+                image,
                 sprite.x,
                 sprite.y,
                 80,

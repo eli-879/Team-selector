@@ -1,9 +1,10 @@
-import Character from './character.js';
-import { Position } from '../character-properties/position.interface.js';
-import { SpriteDict } from '../character-properties/sprite-dict.interface.js';
+import { Character } from './character';
+import { Position } from '../character-properties/position.interface';
+import { SpriteDict } from '../character-properties/sprite-dict.interface';
 
 export class Justin extends Character {
     public image: HTMLImageElement;
+    public imageAttacking: HTMLImageElement;
     public imageWinning: HTMLImageElement;
     public spriteDict: SpriteDict;
     public timeforAttackAnimation: number;
@@ -20,7 +21,8 @@ export class Justin extends Character {
         super(gameWidth, gameHeight, name, pos, id, assets, ctx);
 
         this.image = this.assets[0];
-        this.imageWinning = this.assets[1];
+        this.imageAttacking = this.assets[1];
+        this.imageWinning = this.assets[0];
 
         // custom column/row coords from sprite sheet
         this.spriteDict = {
@@ -39,6 +41,10 @@ export class Justin extends Character {
             winning: [
                 [2, 4],
                 [6, 4],
+            ],
+            dead: [
+                [0, 3],
+                [5, 3],
             ],
         };
 

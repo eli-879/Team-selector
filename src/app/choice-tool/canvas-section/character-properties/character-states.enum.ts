@@ -3,5 +3,5 @@ export enum CharacterStates {
     KNOCKBACKED = 'knockedBack',
     ATTACKING = 'attacking',
     WINNING = 'winning',
-    DEAD = 'knockedBack',
+    DEAD = 'dead',
 }

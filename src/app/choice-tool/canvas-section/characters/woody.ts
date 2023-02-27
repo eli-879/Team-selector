@@ -1,9 +1,10 @@
-import Character from './character.js';
-import { Position } from '../character-properties/position.interface.js';
-import { SpriteDict } from '../character-properties/sprite-dict.interface.js';
+import { Character } from './character';
+import { Position } from '../character-properties/position.interface';
+import { SpriteDict } from '../character-properties/sprite-dict.interface';
 
-export default class Woody extends Character {
+export class Woody extends Character {
     public image: HTMLImageElement;
+    public imageAttacking: HTMLImageElement;
     public imageWinning: HTMLImageElement;
     public spriteDict: SpriteDict;
     public timeforAttackAnimation: number;
@@ -20,6 +21,7 @@ export default class Woody extends Character {
         super(gameWidth, gameHeight, name, pos, id, assets, ctx);
 
         this.image = this.assets[0];
+        this.imageAttacking = this.assets[0];
         this.imageWinning = this.assets[1];
 
         // custom column/row coords from sprite sheet
@@ -39,6 +41,10 @@ export default class Woody extends Character {
             winning: [
                 [1, 3],
                 [10, 3],
+            ],
+            dead: [
+                [0, 3],
+                [5, 3],
             ],
         };
 

@@ -96,6 +96,10 @@ export class AssetManagerService {
         this.assets.damageSplats = [damageSplatRed, damageSplatBlue];
     }
 
+    public getAllCharacterAssets(): AssetContainer {
+        return this.assets;
+    }
+
     public getCharacterAssets(type: CharacterAssetType) {
         switch (type) {
             case 'woody': {

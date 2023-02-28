@@ -96,7 +96,7 @@ export abstract class Character {
 
         // character attributes
         this.maxHealth = 100;
-        this.health = 100;
+        this.health = 10;
         this.dmg = 10;
     }
 

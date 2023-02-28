@@ -1,7 +1,8 @@
 .choice-stat-card {
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 10% 90%;
     grid-template-areas: 'canvas info';
+    align-items: center;
     padding: 25px;
     background-color: #1e1e1e;
     color: #fff;
@@ -34,11 +35,13 @@
     align-items: center;
     justify-content: center;
     display: flex;
+    width: 100px;
+    height: 100px;
 }
 
 .choice-stat-card__canvas {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
 }
 
 .choice-stat-card__info {
@@ -51,10 +54,11 @@
     overflow-wrap: break-word;
     word-wrap: break-word;
     overflow: auto;
+    flex-direction: column;
 }
 
 .choice-stat-card__choice-name {
-    width: 20%;
+    width: 100%;
 }
 
 .choice-stat-card__max-health {
@@ -62,9 +66,19 @@
     flex: 1 1;
     border: 1px solid red;
     height: 100%;
+    min-height: 50px;
+    width: 100%;
+    position: relative;
 }
 
 .choice-stat-card__current-health {
     background-color: red;
-    height: 100%;
+    height: 50px;
+}
+
+.a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 24px;
 }

@@ -4,14 +4,15 @@
     </div>
 
     <div class="choice-stat-card__info">
-        <div class="choice-stat-card__choice-name">{{ choiceStat.choice }}</div>
+        <div class="choice-stat-card__choice-name">
+            {{ choiceStat.choice }}
+        </div>
         <div class="choice-stat-card__max-health">
             <div
                 class="choice-stat-card__current-health"
                 [style.width.%]="choiceStat.health"
-            >
-                {{ choiceStat.health }}
-            </div>
+            ></div>
+            <div class="a">{{ choiceStat.health }}%</div>
         </div>
     </div>
 </div>

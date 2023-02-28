@@ -1,4 +1,19 @@
 .canvas-container {
-    height: 100svh;
+    height: 100%;
     background-color: rgb(71, 71, 255);
+    display: flex;
+}
+
+.canvas-container__choice-stats {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1;
+    gap: 10px;
+    overflow: auto;
+    margin-bottom: 100px;
+    padding: 10px;
+}
+
+arena-of-choices-choice-stat-card {
+    height: auto;
 }

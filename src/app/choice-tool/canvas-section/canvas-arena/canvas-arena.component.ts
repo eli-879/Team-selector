@@ -106,7 +106,7 @@ export class CanvasArenaComponent implements OnInit {
     public onStart() {
         this.resetGame();
         this.locations = this.generateGridLocations(4, 6).map((location) => {
-            return { x: location.x * 80, y: location.y * 80 };
+            return { x: location.x * 180, y: location.y * 160 };
         });
 
         this.characterList = [...this.generateCharacters()];
@@ -574,7 +574,16 @@ export class CanvasArenaComponent implements OnInit {
         }
 
         choiceStat.health -= dmg;
+        choiceStat.health = Math.max(0, choiceStat.health);
 
-        this.choiceToolStore.updateChoiceStats(this.choiceStats);
+        this.choiceToolStore.updateChoiceStats(
+            this.sortChoiceStats(this.choiceStats)
+        );
+    }
+
+    private sortChoiceStats(choiceStats: ChoiceStats[]) {
+        return choiceStats.sort((choiceStat1, choiceStat2) => {
+            return choiceStat2.health - choiceStat1.health;
+        });
     }
 }

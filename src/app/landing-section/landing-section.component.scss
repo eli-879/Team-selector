@@ -1,7 +1,7 @@
 .landing-section {
     background-color: inherit;
     height: 100svh;
-    color: inherit;
+    color: #000000;
     display: flex;
     flex-direction: column;
 }
@@ -18,17 +18,11 @@
 }
 
 .landing-section__info-header {
-    font-size: clamp(2.5rem, 5vw + 1rem, 3rem);
+    font-size: clamp(2rem, 5vw + 1rem, 3rem);
     max-height: 100%;
-    font-size: 100px;
-}
-
-.landing-section__spacer {
-    aspect-ratio: 900/150;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .layer1 {

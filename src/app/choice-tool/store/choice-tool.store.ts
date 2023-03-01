@@ -12,7 +12,7 @@ export class ChoiceToolStore extends ComponentStore<ChoiceToolState> {
         super({
             choices: [],
             choiceStats: [],
-            view: 'canvas',
+            view: 'choice',
             generateCharacters: false,
         });
     }

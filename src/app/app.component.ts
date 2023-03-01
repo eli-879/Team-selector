@@ -50,9 +50,11 @@ export class AppComponent {
                 switch (pallete) {
                     case 'pallete1':
                         this.colorStore.updateColorPallete(this.colorPallete1);
+                        document.body.style.background = this.colorPallete1.bg;
                         break;
                     case 'pallete2':
                         this.colorStore.updateColorPallete(this.colorPallete2);
+                        document.body.style.background = this.colorPallete2.bg;
                         break;
                 }
             }

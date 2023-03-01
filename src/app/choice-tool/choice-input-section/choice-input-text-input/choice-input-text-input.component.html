@@ -1,12 +1,22 @@
-<div class="text-input">
-    <input
-        type="text"
-        class="text-input__input"
-        #choice
-        (keyup.enter)="addChoice(choice.value); choice.value = ''"
-        placeholder="Enter choice..."
-    />
-    <button (click)="addChoice(choice.value); choice.value = ''">
-        Add choice
-    </button>
-</div>
+<ng-container *ngIf="colorPallete$ | async; let colorPallete"
+    ><div class="text-input">
+        <label class="text-input__label">
+            <input
+                type="text"
+                class="text-input__input"
+                #choice
+                (keyup.enter)="addChoice(choice.value); choice.value = ''"
+                placeholder="Enter choice..."
+            />
+            <button
+                class="text-input__button"
+                [ngStyle]="{
+                    color: colorPallete.textColor
+                }"
+                (click)="addChoice(choice.value); choice.value = ''"
+            >
+                Add choice
+            </button>
+        </label>
+    </div></ng-container
+>

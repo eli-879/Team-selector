@@ -1,5 +1,37 @@
-.canvas {
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container__canvas {
     color: white;
     font-size: 16px;
     border: 1px solid white;
+}
+
+.container__buttons {
+    display: flex;
+    gap: 25px;
+}
+
+.container__button {
+    font-family: 'Permanent Marker', cursive;
+
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    transition: 0.5s;
+    background-color: #7692ff;
+    color: white;
+}
+
+.container__button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    background-color: #495a9c;
 }

@@ -74,12 +74,12 @@ export abstract class Character {
         this.imageTimerMax = 125;
         this.border = 0;
         this.spacing = 0;
-        this.row = 2;
+        this.row = 0;
         this.col = 0;
 
         this.assets = assets;
 
-        this.facing = Directions.RIGHT;
+        this.facing = Math.random() > 0.5 ? Directions.RIGHT : Directions.LEFT;
 
         // character movement
         this.speed = 75;
@@ -88,7 +88,7 @@ export abstract class Character {
         this.goal = { x: 0, y: 0 };
         this.position = pos;
 
-        this.status = CharacterStates.RUNNING;
+        this.status = CharacterStates.WAITING;
 
         this.time = 0;
         this.attackTimer = 0;
@@ -96,7 +96,7 @@ export abstract class Character {
 
         // character attributes
         this.maxHealth = 100;
-        this.health = 10;
+        this.health = 20;
         this.dmg = 10;
     }
 
@@ -160,7 +160,14 @@ export abstract class Character {
     public drawSprite(ctx: CanvasRenderingContext2D, state: CharacterStates) {
         let sprite;
 
+        console.log(state);
+
         switch (state) {
+            case CharacterStates.WAITING:
+                sprite = this.getSpriteConstantLoop(CharacterStates.WAITING);
+                this.drawOntoCanvas(ctx, sprite, this.image);
+                break;
+
             case CharacterStates.RUNNING:
                 sprite = this.getSpriteConstantLoop(CharacterStates.RUNNING);
                 this.drawOntoCanvas(ctx, sprite, this.image);

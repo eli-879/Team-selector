@@ -2,6 +2,7 @@ import {
     ChangeDetectionStrategy,
     Component,
     ElementRef,
+    OnDestroy,
     OnInit,
     ViewChild,
 } from '@angular/core';
@@ -21,6 +22,8 @@ import { DamageSplat } from '../collision/damagesplat';
 import { CharacterStates } from '../character-properties/character-states.enum';
 import { Collision } from '../collision/collision';
 import { ChoiceStats } from 'src/app/core/models/choice-stats.interface';
+import { Observable, Subscription } from 'rxjs';
+import { View } from '../../store/types/view.type';
 
 @Component({
     selector: 'arena-of-choices-canvas-arena',
@@ -30,7 +33,7 @@ import { ChoiceStats } from 'src/app/core/models/choice-stats.interface';
     styleUrls: ['./canvas-arena.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CanvasArenaComponent implements OnInit {
+export class CanvasArenaComponent implements OnInit, OnDestroy {
     public choices: ChoiceCard[] = [];
 
     @ViewChild('canvas', { static: true })
@@ -78,13 +81,17 @@ export class CanvasArenaComponent implements OnInit {
 
     public locations: Position[] = [];
 
+    public waiting = true;
+
+    private subs = new Subscription();
+
+    public view$: Observable<View>;
+
     constructor(
         private assetManager: AssetManagerService,
         private choiceToolStore: ChoiceToolStore
     ) {
-        this.choiceToolStore.choices$.subscribe(
-            (choices) => (this.choices = choices)
-        );
+        this.view$ = this.choiceToolStore.view$;
     }
 
     public ngOnInit(): void {
@@ -100,11 +107,34 @@ export class CanvasArenaComponent implements OnInit {
         this.assets = this.assetManager.getAllCharacterAssets();
         this.gameLoop(0);
 
-        console.log(this.assets);
+        this.subs.add(
+            this.choiceToolStore.choices$.subscribe(
+                (choices) => (this.choices = choices)
+            )
+        );
+
+        this.subs.add(
+            this.choiceToolStore.generateCharacters$.subscribe(
+                (generateCharacters) => {
+                    if (generateCharacters) {
+                        this.onLoadIn();
+                    }
+                }
+            )
+        );
     }
 
-    public onStart() {
+    public ngOnDestroy(): void {
+        this.subs.unsubscribe();
+    }
+
+    public updateView() {
+        this.choiceToolStore.updateView('choice');
+    }
+
+    public onLoadIn() {
         this.resetGame();
+
         this.locations = this.generateGridLocations(4, 6).map((location) => {
             return { x: location.x * 180, y: location.y * 160 };
         });
@@ -116,9 +146,37 @@ export class CanvasArenaComponent implements OnInit {
         this.players = this.beginning.length;
     }
 
+    public onStart() {
+        if (this.waiting) {
+            for (let i = 0; i < this.choices.length; i++) {
+                this.characterList[i].setStatus(CharacterStates.RUNNING);
+                this.characterList[i].setSprite(CharacterStates.RUNNING);
+            }
+
+            this.waiting = false;
+        } else {
+            this.waiting = true;
+            this.resetGame();
+
+            this.locations = this.generateGridLocations(4, 6).map(
+                (location) => {
+                    return { x: location.x * 180, y: location.y * 160 };
+                }
+            );
+
+            this.characterList = [...this.generateCharacters()];
+            this.choiceStats = [
+                ...this.generateChoiceStats(this.characterList),
+            ];
+            this.choiceToolStore.updateChoiceStats(this.choiceStats);
+
+            this.players = this.beginning.length;
+        }
+    }
+
     private generateGridLocations(rows: number, cols: number) {
         const locations: Position[] = [];
-        for (let i = 0; i < rows; i++) {
+        for (let i = 1; i < rows; i++) {
             for (let j = 0; j < cols; j++) {
                 locations.push({ x: j, y: i });
             }
@@ -134,6 +192,7 @@ export class CanvasArenaComponent implements OnInit {
             const choice = this.choices[i];
             const pos = this.locations.pop();
             const char = this.createNewCharacter(choice, pos as Position, i);
+            char.setSprite(CharacterStates.WAITING);
             characters.push(char);
         }
         return characters;
@@ -256,7 +315,9 @@ export class CanvasArenaComponent implements OnInit {
     private updateGame(dt: number) {
         let step = dt;
         do {
-            this.resolveAllCollisions(step);
+            if (!this.waiting) {
+                this.resolveAllCollisions(step);
+            }
             // drawing portion
             this.drawAllElements(step);
 
@@ -378,14 +439,14 @@ export class CanvasArenaComponent implements OnInit {
             if (
                 character.getAttackTimer() <
                     character.getTimeForAttackAnimation() &&
-                character.getStatus() == CharacterStates.ATTACKING
+                character.getStatus() === CharacterStates.ATTACKING
             ) {
                 character.setSprite(CharacterStates.RUNNING);
                 character.setStatus(CharacterStates.RUNNING);
             }
 
             // if character is running, update the direction they face (left if negative movement, right if positive movement)
-            if (character.getStatus() == CharacterStates.RUNNING) {
+            if (character.getStatus() === CharacterStates.RUNNING) {
                 character.updateDirection();
             }
         }

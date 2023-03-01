@@ -49,6 +49,10 @@ export class Woody extends Character {
                 [0, 3],
                 [5, 3],
             ],
+            waiting: [
+                [0, 0],
+                [4, 0],
+            ],
         };
 
         // time needed for animation to attack

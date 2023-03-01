@@ -1,6 +1,19 @@
-<div>
-    <canvas #canvas class="canvas" id="arena" width="960" height="720"
+<div class="container">
+    <canvas
+        #canvas
+        class="container__canvas"
+        id="arena"
+        width="960"
+        height="720"
         >Canvas Section</canvas
     >
-    <button (click)="onStart()">Click Me</button>
+    <div class="container__buttons">
+        <button class="container__button" (click)="updateView()">
+            Edit your choices
+        </button>
+        <button class="container__button" (click)="onStart()">
+            <div *ngIf="this.waiting === true">Start Game</div>
+            <div *ngIf="this.waiting === false">Reset Game</div>
+        </button>
+    </div>
 </div>

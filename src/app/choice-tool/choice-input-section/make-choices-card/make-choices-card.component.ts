@@ -16,5 +16,6 @@ export class MakeChoicesCardComponent {
 
     public onClick() {
         this.choiceStore.updateView('canvas');
+        this.choiceStore.updateGenerateCharacters(true);
     }
 }

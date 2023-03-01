@@ -6,4 +6,5 @@ export interface ChoiceToolState {
     choices: ChoiceCard[];
     choiceStats: ChoiceStats[];
     view: View;
+    generateCharacters: boolean;
 }

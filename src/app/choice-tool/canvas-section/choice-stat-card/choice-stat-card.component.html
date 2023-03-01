@@ -1,18 +1,26 @@
-<div class="choice-stat-card">
-    <div class="choice-stat-card__canvas-container">
-        <canvas #canvas class="choice-stat-card__canvas"></canvas>
-    </div>
+<ng-container *ngIf="colorPallete$ | async; let colorPallete">
+    <div
+        class="choice-stat-card"
+        [ngStyle]="{
+            background: colorPallete.cardColor,
+            color: colorPallete.cardTextColor
+        }"
+    >
+        <div class="choice-stat-card__canvas-container">
+            <canvas #canvas class="choice-stat-card__canvas"></canvas>
+        </div>
 
-    <div class="choice-stat-card__info">
-        <div class="choice-stat-card__choice-name">
-            {{ choiceStat.choice }}
-        </div>
-        <div class="choice-stat-card__max-health">
-            <div
-                class="choice-stat-card__current-health"
-                [style.width.%]="choiceStat.health"
-            ></div>
-            <div class="a">{{ choiceStat.health }}%</div>
+        <div class="choice-stat-card__info">
+            <div class="choice-stat-card__choice-name">
+                {{ choiceStat.choice }}
+            </div>
+            <div class="choice-stat-card__max-health">
+                <div
+                    class="choice-stat-card__current-health"
+                    [style.width.%]="choiceStat.health"
+                ></div>
+                <div class="a">{{ choiceStat.health }}%</div>
+            </div>
         </div>
     </div>
-</div>
+</ng-container>

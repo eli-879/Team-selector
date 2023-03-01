@@ -4,4 +4,5 @@ export interface SpriteDict {
     attacking: number[][];
     winning: number[][];
     dead: number[][];
+    waiting: number[][];
 }

@@ -12,7 +12,8 @@ export class ChoiceToolStore extends ComponentStore<ChoiceToolState> {
         super({
             choices: [],
             choiceStats: [],
-            view: 'choice',
+            view: 'canvas',
+            generateCharacters: false,
         });
     }
 
@@ -28,6 +29,10 @@ export class ChoiceToolStore extends ComponentStore<ChoiceToolState> {
 
     public readonly view$: Observable<View> = this.select(
         (state) => state.view
+    );
+
+    public readonly generateCharacters$: Observable<boolean> = this.select(
+        (state) => state.generateCharacters
     );
 
     // ** CHOICES ** //
@@ -48,6 +53,12 @@ export class ChoiceToolStore extends ComponentStore<ChoiceToolState> {
     public readonly updateView = this.updater(
         (state, view: View): ChoiceToolState => {
             return { ...state, view: view };
+        }
+    );
+
+    public readonly updateGenerateCharacters = this.updater(
+        (state, generateCharacters: boolean): ChoiceToolState => {
+            return { ...state, generateCharacters: generateCharacters };
         }
     );
 }

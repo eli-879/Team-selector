@@ -15,7 +15,6 @@ export class MakeChoicesCardComponent {
     constructor(private choiceStore: ChoiceToolStore) {}
 
     public onClick() {
-        console.log('S');
         this.choiceStore.updateView('canvas');
     }
 }

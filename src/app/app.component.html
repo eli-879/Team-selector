@@ -1,4 +1,19 @@
-<div class="container">
-    <arena-of-choices-landing-section></arena-of-choices-landing-section>
-    <arena-of-choices-choice-tool></arena-of-choices-choice-tool>
-</div>
+<ng-container *ngIf="colorPallete$ | async; let colorPallete"
+    ><div
+        class="container"
+        [ngStyle]="{
+            background: colorPallete.bg,
+            color: colorPallete.textColor
+        }"
+    >
+        <arena-of-choices-landing-section
+            arenaOfChoicesObserverChild
+            [observer]="this.observer"
+            data-color="pallete1"
+        ></arena-of-choices-landing-section>
+        <arena-of-choices-choice-tool
+            arenaOfChoicesObserverChild
+            [observer]="this.observer"
+            data-color="pallete2"
+        ></arena-of-choices-choice-tool></div
+></ng-container>

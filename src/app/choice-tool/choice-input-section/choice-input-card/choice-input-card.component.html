@@ -1,9 +1,17 @@
-<div class="input-card">
-    <div class="input-card__canvas-container">
-        <canvas #canvas class="input-card__canvas"></canvas>
-    </div>
+<ng-container *ngIf="colorPallete$ | async; let colorPallete"
+    ><div
+        class="input-card"
+        [ngStyle]="{
+            background: colorPallete.cardColor,
+            color: colorPallete.cardTextColor
+        }"
+    >
+        <div class="input-card__canvas-container">
+            <canvas #canvas class="input-card__canvas"></canvas>
+        </div>
 
-    <div class="input-card__info">
-        <div class="input-card__choice-name">{{ choice.name }}</div>
-    </div>
-</div>
+        <div class="input-card__info">
+            <div class="input-card__choice-name">{{ choice.name }}</div>
+        </div>
+    </div></ng-container
+>

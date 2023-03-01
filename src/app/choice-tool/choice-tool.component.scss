@@ -1,10 +1,14 @@
 .container {
-    height: 100svh;
+    background-color: inherit;
+    color: inherit;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
     width: 100%;
 }
 
 arena-of-choices-choice-input-section,
 arena-of-choices-canvas-section {
-    height: 100%;
-    width: 100%;
+    min-height: 100svh;
+    display: flex;
 }

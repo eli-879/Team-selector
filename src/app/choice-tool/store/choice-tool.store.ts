@@ -28,7 +28,7 @@ export class ChoiceToolStore extends ComponentStore<ChoiceToolState> {
 
     public readonly addChoice = this.updater(
         (state, choice: ChoiceCard): ChoiceToolState => {
-            return { ...state, choices: [...state.choices, choice] };
+            return { ...state, choices: [choice, ...state.choices] };
         }
     );
 

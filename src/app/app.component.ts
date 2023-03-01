@@ -41,6 +41,7 @@ export class AppComponent {
     };
 
     callback = (entries: IntersectionObserverEntry[]) => {
+        console.log(entries);
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 const e = entry.target as HTMLElement;

@@ -1,11 +1,14 @@
 <div class="input">
-    <div class="input__list-title">Choices</div>
+    <div class="input__list-title">Enter All Your Choices!</div>
     <div class="input__text-area">
         <arena-of-choices-choice-input-text-input></arena-of-choices-choice-input-text-input>
     </div>
     <div class="input__list-area" *ngIf="choices$ | async; let choices">
         <div class="input__list-choices-body">
             <div class="input__list-cards" *ngIf="choices.length > 0">
+                <arena-of-choices-make-choices-card class="input__go"
+                    >Make a Choice!</arena-of-choices-make-choices-card
+                >
                 <arena-of-choices-choice-input-card
                     *ngFor="let choice of choices"
                     [choice]="choice"

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ChoiceCard } from 'src/app/core/models/choice-card.interface';
 import { ChoiceStats } from 'src/app/core/models/choice-stats.interface';
 import { ChoiceToolState } from './choice-tool.state';
+import { View } from './types/view.type';
 
 @Injectable()
 export class ChoiceToolStore extends ComponentStore<ChoiceToolState> {
@@ -11,6 +12,7 @@ export class ChoiceToolStore extends ComponentStore<ChoiceToolState> {
         super({
             choices: [],
             choiceStats: [],
+            view: 'choice',
         });
     }
 
@@ -24,6 +26,10 @@ export class ChoiceToolStore extends ComponentStore<ChoiceToolState> {
         (state) => state.choiceStats
     );
 
+    public readonly view$: Observable<View> = this.select(
+        (state) => state.view
+    );
+
     // ** CHOICES ** //
 
     public readonly addChoice = this.updater(
@@ -34,8 +40,14 @@ export class ChoiceToolStore extends ComponentStore<ChoiceToolState> {
 
     public readonly updateChoiceStats = this.updater(
         (state, choiceStats: ChoiceStats[]): ChoiceToolState => {
-            console.log(choiceStats);
             return { ...state, choiceStats: [...choiceStats] };
+        }
+    );
+
+    // ** VIEW ** //
+    public readonly updateView = this.updater(
+        (state, view: View): ChoiceToolState => {
+            return { ...state, view: view };
         }
     );
 }

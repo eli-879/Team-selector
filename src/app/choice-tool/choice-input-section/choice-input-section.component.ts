@@ -5,6 +5,7 @@ import { ChoiceToolStore } from '../store/choice-tool.store';
 import { ChoiceInputCardComponent } from './choice-input-card/choice-input-card.component';
 import { Observable } from 'rxjs/internal/Observable';
 import { ChoiceCard } from 'src/app/core/models/choice-card.interface';
+import { MakeChoicesCardComponent } from './make-choices-card/make-choices-card.component';
 
 @Component({
     selector: 'arena-of-choices-choice-input-section',
@@ -13,6 +14,7 @@ import { ChoiceCard } from 'src/app/core/models/choice-card.interface';
         CommonModule,
         ChoiceInputTextInputComponent,
         ChoiceInputCardComponent,
+        MakeChoicesCardComponent,
     ],
     templateUrl: './choice-input-section.component.html',
     styleUrls: ['./choice-input-section.component.scss'],

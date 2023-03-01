@@ -1,5 +1,6 @@
 <ng-container *ngIf="colorPallete$ | async; let colorPallete"
     ><div
+        #container
         class="container"
         [ngStyle]="{
             background: colorPallete.bg,

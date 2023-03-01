@@ -55,11 +55,13 @@
     font-size: 32px;
 }
 
-arena-of-choices-choice-input-text-input {
+arena-of-choices-choice-input-text-input,
+.input__go {
     width: 100%;
 }
 
-arena-of-choices-choice-input-card {
+arena-of-choices-choice-input-card,
+.input__go {
     flex: 1 1 33%;
     max-width: 33%;
 

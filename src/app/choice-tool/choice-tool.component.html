@@ -1,3 +1,10 @@
-<div class="container">
-    <arena-of-choices-choice-input-section></arena-of-choices-choice-input-section>
+<div class="container" *ngIf="view$ | async; let view">
+    <div [ngSwitch]="view">
+        <arena-of-choices-choice-input-section
+            *ngSwitchCase="'choice'"
+        ></arena-of-choices-choice-input-section>
+        <arena-of-choices-canvas-section
+            *ngSwitchCase="'canvas'"
+        ></arena-of-choices-canvas-section>
+    </div>
 </div>

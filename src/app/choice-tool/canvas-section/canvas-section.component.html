@@ -1,5 +1,7 @@
 <div class="canvas-container">
-    <div><arena-of-choices-canvas-arena></arena-of-choices-canvas-arena></div>
+    <div class="canvas-container__wrapper">
+        <arena-of-choices-canvas-arena></arena-of-choices-canvas-arena>
+    </div>
     <div class="canvas-container__choice-stats">
         <arena-of-choices-choice-stat-card
             *ngFor="let stat of choiceStats$ | async"

@@ -12,8 +12,8 @@
             Edit your choices
         </button>
         <button class="container__button" (click)="onStart()">
-            <div *ngIf="this.waiting === true">Start Game</div>
-            <div *ngIf="this.waiting === false">Reset Game</div>
+            <div *ngIf="this.waiting">Start Game</div>
+            <div *ngIf="!this.waiting">Reset Game</div>
         </button>
     </div>
 </div>

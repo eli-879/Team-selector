@@ -1,0 +1,34 @@
+<div class="result-container" *ngIf="results$ | async; let results">
+    <div class="result-container__header">Results:</div>
+    <input
+        type="radio"
+        id="deathOrder"
+        name="deathOrder"
+        value="deathOrder"
+        [(ngModel)]="sortOrder"
+        (change)="sortResults(this.sortOrder, results)"
+    />
+    <label for="deathOrder">Death Order</label>
+
+    <input
+        type="radio"
+        id="dmgDealt"
+        name="dmgDealt"
+        value="dmgDealt"
+        [(ngModel)]="sortOrder"
+        (change)="sortResults(this.sortOrder, results)"
+    />
+    <label for="dmgDealt">Damage Dealt</label>
+
+    <div
+        class="result-container__results"
+        *ngIf="choices$ | async; let choices"
+    >
+        <arena-of-choices-choice-result
+            *ngFor="let result of results"
+            [result]="result"
+            [sortOrder]="this.sortOrder"
+            [numChoices]="choices.length"
+        ></arena-of-choices-choice-result>
+    </div>
+</div>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import { Observable } from 'rxjs';
 import { ChoiceCard } from 'src/app/core/models/choice-card.interface';
+import { ChoiceResult } from 'src/app/core/models/choice-result.interface';
 import { ChoiceStats } from 'src/app/core/models/choice-stats.interface';
 import { ChoiceToolState } from './choice-tool.state';
 import { View } from './types/view.type';
@@ -14,6 +15,8 @@ export class ChoiceToolStore extends ComponentStore<ChoiceToolState> {
             choiceStats: [],
             view: 'choice',
             generateCharacters: false,
+            gameFinished: false,
+            choiceResults: [],
         });
     }
 
@@ -33,6 +36,14 @@ export class ChoiceToolStore extends ComponentStore<ChoiceToolState> {
 
     public readonly generateCharacters$: Observable<boolean> = this.select(
         (state) => state.generateCharacters
+    );
+
+    public readonly gameFinished$: Observable<boolean> = this.select(
+        (state) => state.gameFinished
+    );
+
+    public readonly choiceResults$: Observable<ChoiceResult[]> = this.select(
+        (state) => state.choiceResults
     );
 
     // ** CHOICES ** //
@@ -61,7 +72,26 @@ export class ChoiceToolStore extends ComponentStore<ChoiceToolState> {
         }
     );
 
+    public readonly addChoiceResult = this.updater(
+        (state, choiceResult: ChoiceResult): ChoiceToolState => {
+            return {
+                ...state,
+                choiceResults: [choiceResult, ...state.choiceResults],
+            };
+        }
+    );
+
+    public readonly updateChoiceResults = this.updater(
+        (state, choiceResults: ChoiceResult[]): ChoiceToolState => {
+            return {
+                ...state,
+                choiceResults: [...choiceResults],
+            };
+        }
+    );
+
     // ** VIEW ** //
+
     public readonly updateView = this.updater(
         (state, view: View): ChoiceToolState => {
             return { ...state, view: view };
@@ -71,6 +101,12 @@ export class ChoiceToolStore extends ComponentStore<ChoiceToolState> {
     public readonly updateGenerateCharacters = this.updater(
         (state, generateCharacters: boolean): ChoiceToolState => {
             return { ...state, generateCharacters: generateCharacters };
+        }
+    );
+
+    public readonly updateGameFinished = this.updater(
+        (state, gameFinished: boolean): ChoiceToolState => {
+            return { ...state, gameFinished: gameFinished };
         }
     );
 }

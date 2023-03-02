@@ -86,12 +86,14 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
     private subs = new Subscription();
 
     public view$: Observable<View>;
+    public gameFinished$: Observable<boolean>;
 
     constructor(
         private assetManager: AssetManagerService,
         private choiceToolStore: ChoiceToolStore
     ) {
         this.view$ = this.choiceToolStore.view$;
+        this.gameFinished$ = this.choiceToolStore.gameFinished$;
     }
 
     public ngOnInit(): void {
@@ -154,24 +156,21 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
             }
 
             this.waiting = false;
-        } else {
-            this.waiting = true;
-            this.resetGame();
-
-            this.locations = this.generateGridLocations(4, 6).map(
-                (location) => {
-                    return { x: location.x * 180, y: location.y * 160 };
-                }
-            );
-
-            this.characterList = [...this.generateCharacters()];
-            this.choiceStats = [
-                ...this.generateChoiceStats(this.characterList),
-            ];
-            this.choiceToolStore.updateChoiceStats(this.choiceStats);
-
-            this.players = this.beginning.length;
+            return;
         }
+
+        this.waiting = true;
+        this.resetGame();
+
+        this.locations = this.generateGridLocations(4, 6).map((location) => {
+            return { x: location.x * 180, y: location.y * 160 };
+        });
+
+        this.characterList = [...this.generateCharacters()];
+        this.choiceStats = [...this.generateChoiceStats(this.characterList)];
+        this.choiceToolStore.updateChoiceStats(this.choiceStats);
+
+        this.players = this.beginning.length;
     }
 
     private generateGridLocations(rows: number, cols: number) {
@@ -210,6 +209,7 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
                 images: this.assetManager.getCharacterAssets(
                     character.characterType
                 ) as HTMLImageElement[],
+                state: CharacterStates.WAITING,
             };
             characterStats.push(characterStat);
         }
@@ -288,6 +288,8 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
         this.deathListObjects = [];
         this.characterList = [];
         this.damageSplats = [];
+        this.choiceToolStore.updateGameFinished(false);
+        this.choiceToolStore.updateChoiceResults([]);
     }
 
     // gameloop that controls the game
@@ -370,8 +372,17 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
         if (this.characterList.length == 1) {
             if (this.characterList[0].getStatus() != CharacterStates.WINNING) {
                 this.characterList[0].setSprite(CharacterStates.WINNING);
+                this.characterList[0].setStatus(CharacterStates.WINNING);
+                this.choiceToolStore.updateGameFinished(true);
+                this.choiceToolStore.addChoiceResult({
+                    id: this.characterList[0].id,
+                    name: this.characterList[0].name,
+                    characterType: this.characterList[0].characterType,
+                    dmgDealt: this.characterList[0].dmgDealt,
+                    deathNumber: this.deathListNames.length + 1,
+                    images: this.characterList[0].assets,
+                });
             }
-            this.characterList[0].setStatus(CharacterStates.WINNING);
         }
     }
 
@@ -381,6 +392,12 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
 
     // function that handles moving the characters around and recognising when they are dead
     private updateObjects(step: number) {
+        const choiceStats: ChoiceStats[] = [];
+
+        if (this.characterList.length === 1) {
+            return;
+        }
+
         for (let i = 0; i < this.characterList.length; i++) {
             const character = this.characterList[i];
             const pos = character.getPosition();
@@ -402,6 +419,14 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
 
                 this.characterList.splice(i, 1);
                 i--;
+                this.choiceToolStore.addChoiceResult({
+                    id: character.id,
+                    name: character.name,
+                    characterType: character.characterType,
+                    dmgDealt: character.dmgDealt,
+                    deathNumber: this.deathListNames.length,
+                    images: character.assets,
+                });
                 continue;
             }
 
@@ -449,7 +474,21 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
             if (character.getStatus() === CharacterStates.RUNNING) {
                 character.updateDirection();
             }
+
+            choiceStats.push({
+                id: character.id,
+                choice: character.getName(),
+                health: character.health,
+                maxHealth: character.maxHealth,
+                characterType: character.characterType,
+                images: character.assets,
+                state: character.status,
+            });
         }
+
+        this.choiceToolStore.updateChoiceStats(
+            this.sortChoiceStats(choiceStats)
+        );
     }
 
     // handles each collision - is passed a collision and decides who gets hit and who is the one hitting
@@ -483,7 +522,7 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
             obj1.hit(obj2, step);
             this.updateStatus(obj1, obj2);
             this.updateHealth(obj2, rand);
-            this.updateChoiceStats(obj2.getID(), rand);
+            this.updateDmgDealt(obj1, rand);
 
             return [obj2, rand, maxHit];
 
@@ -492,7 +531,7 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
             obj2.hit(obj1, step);
             this.updateStatus(obj2, obj1);
             this.updateHealth(obj1, rand);
-            this.updateChoiceStats(obj1.getID(), rand);
+            this.updateDmgDealt(obj2, rand);
 
             return [obj1, rand, maxHit];
 
@@ -504,14 +543,14 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
                 obj1.hit(obj2, step);
                 this.updateStatus(obj1, obj2);
                 this.updateHealth(obj2, rand);
-                this.updateChoiceStats(obj2.getID(), rand);
+                this.updateDmgDealt(obj1, rand);
 
                 return [obj2, rand, maxHit];
             } else {
                 obj2.hit(obj1, step);
                 this.updateStatus(obj2, obj1);
                 this.updateHealth(obj1, rand);
-                this.updateChoiceStats(obj1.getID(), rand);
+                this.updateDmgDealt(obj2, rand);
 
                 return [obj1, rand, maxHit];
             }
@@ -610,7 +649,6 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
         damage: number,
         maxHit: boolean
     ) {
-        console.log(this.assets.damageSplats);
         const damageSplat = new DamageSplat(
             location,
             damage,
@@ -637,21 +675,8 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
         obj2.minusHealth(dmg);
     }
 
-    private updateChoiceStats(id: number, dmg: number) {
-        const choiceStat = this.choiceStats.find(
-            (element) => element.id === id
-        );
-
-        if (choiceStat === undefined) {
-            return;
-        }
-
-        choiceStat.health -= dmg;
-        choiceStat.health = Math.max(0, choiceStat.health);
-
-        this.choiceToolStore.updateChoiceStats(
-            this.sortChoiceStats(this.choiceStats)
-        );
+    private updateDmgDealt(character: Character, dmg: number) {
+        character.dmgDealt += dmg;
     }
 
     private sortChoiceStats(choiceStats: ChoiceStats[]) {

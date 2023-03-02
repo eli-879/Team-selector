@@ -16,6 +16,7 @@ import { ColorPallete } from 'src/app/color-store/types/color-pallete.interface'
 })
 export class ChoiceInputTextInputComponent {
     public colorPallete$: Observable<ColorPallete>;
+    private numChoices = 0;
 
     constructor(
         private choiceToolStore: ChoiceToolStore,
@@ -35,10 +36,13 @@ export class ChoiceInputTextInputComponent {
 
         if (assetImages !== null) {
             this.choiceToolStore.addChoice({
+                id: this.numChoices,
                 name: choice,
                 images: assetImages,
                 type: assetType,
             });
+
+            this.numChoices += 1;
         }
     }
 }

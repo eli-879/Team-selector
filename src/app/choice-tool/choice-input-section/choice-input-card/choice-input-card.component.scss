@@ -56,3 +56,18 @@
 .input-card__choice-name {
     max-width: 100%;
 }
+
+.input-card__delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 24px;
+    padding: inherit;
+    z-index: 2;
+    transition: 0.5s;
+}
+
+.input-card__delete:hover {
+    transform: rotate(360deg) scale(1.4);
+    cursor: pointer;
+}

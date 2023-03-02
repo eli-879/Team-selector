@@ -13,5 +13,7 @@
         <div class="input-card__info">
             <div class="input-card__choice-name">{{ choice.name }}</div>
         </div>
-    </div></ng-container
->
+
+        <div class="input-card__delete" (click)="this.deleteSelf()">✖</div>
+    </div>
+</ng-container>

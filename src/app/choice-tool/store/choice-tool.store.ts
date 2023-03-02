@@ -49,6 +49,18 @@ export class ChoiceToolStore extends ComponentStore<ChoiceToolState> {
         }
     );
 
+    public readonly removeChoiceById = this.updater(
+        (state, id: number): ChoiceToolState => {
+            const index = state.choices.findIndex(
+                (choice: ChoiceCard) => choice.id === id
+            );
+
+            state.choices.splice(index, 1);
+
+            return { ...state, choices: [...state.choices] };
+        }
+    );
+
     // ** VIEW ** //
     public readonly updateView = this.updater(
         (state, view: View): ChoiceToolState => {

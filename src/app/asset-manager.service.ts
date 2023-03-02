@@ -89,11 +89,17 @@ export class AssetManagerService {
 
         const damageSplatRed = new Image();
         const damageSplatBlue = new Image();
+        const damageSplatMaxHit = new Image();
 
         damageSplatRed.src = this.assetFolderPath + '/dmgsplat_red.png';
         damageSplatBlue.src = this.assetFolderPath + '/dmgsplat_blue.png';
+        damageSplatMaxHit.src = this.assetFolderPath + '/dmgsplat_maxhit.png';
 
-        this.assets.damageSplats = [damageSplatRed, damageSplatBlue];
+        this.assets.damageSplats = [
+            damageSplatRed,
+            damageSplatBlue,
+            damageSplatMaxHit,
+        ];
     }
 
     public getAllCharacterAssets(): AssetContainer {

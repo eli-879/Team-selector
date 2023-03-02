@@ -1,0 +1,37 @@
+<ng-container *ngIf="colorPallete$ | async; let colorPallete">
+    <div
+        class="result-container"
+        [ngStyle]="{
+            background: colorPallete.cardColor,
+            color: colorPallete.cardTextColor
+        }"
+    >
+        <div class="result-container__canvas-container">
+            <canvas #canvas class="result-container__canvas"></canvas>
+        </div>
+        <div class="result-container__info">
+            <div class="result-container__name">
+                {{ result.name | customSlice : 15 }}
+            </div>
+            <ng-container [ngSwitch]="this.sortOrder">
+                <div
+                    class="result-container__dmg-dealt"
+                    *ngSwitchCase="'dmgDealt'"
+                >
+                    Damage dealt: {{ result.dmgDealt }}
+                </div>
+                <div
+                    class="result-container__death-order"
+                    *ngSwitchCase="'deathOrder'"
+                >
+                    Death number:
+                    {{
+                        this.numChoices === result.deathNumber
+                            ? 'Imagine dying lol'
+                            : result.deathNumber
+                    }}
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>

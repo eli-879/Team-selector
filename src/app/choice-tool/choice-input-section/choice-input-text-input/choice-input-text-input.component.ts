@@ -31,7 +31,6 @@ export class ChoiceInputTextInputComponent {
             return;
         }
         const assetType = this.assetManager.getRandomCharacterAsset();
-        console.log(assetType);
         const assetImages = this.assetManager.getCharacterAssets(assetType);
 
         if (assetImages !== null) {

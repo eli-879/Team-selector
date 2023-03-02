@@ -43,6 +43,7 @@ export abstract class Character {
     public maxHealth: number;
     public health: number;
     public dmg: number;
+    public dmgDealt: number;
 
     public abstract spriteDict: SpriteDict;
     public abstract image: HTMLImageElement;
@@ -96,8 +97,9 @@ export abstract class Character {
 
         // character attributes
         this.maxHealth = 100;
-        this.health = 20;
-        this.dmg = 10;
+        this.health = 100;
+        this.dmg = 15;
+        this.dmgDealt = 0;
     }
 
     // Drawing methods
@@ -159,9 +161,6 @@ export abstract class Character {
 
     public drawSprite(ctx: CanvasRenderingContext2D, state: CharacterStates) {
         let sprite;
-
-        console.log(state);
-
         switch (state) {
             case CharacterStates.WAITING:
                 sprite = this.getSpriteConstantLoop(CharacterStates.WAITING);
@@ -179,13 +178,13 @@ export abstract class Character {
                 break;
             case CharacterStates.KNOCKBACKED:
                 sprite = this.getSpriteOneLoop(CharacterStates.KNOCKBACKED);
-                ctx.fillText(
-                    'KBed',
-                    this.position.x +
-                        this.width / 2 -
-                        ctx.measureText('KBed').width / 2,
-                    this.position.y - 10
-                );
+                // ctx.fillText(
+                //     'KBed',
+                //     this.position.x +
+                //         this.width / 2 -
+                //         ctx.measureText('KBed').width / 2,
+                //     this.position.y - 10
+                // );
                 this.drawOntoCanvas(ctx, sprite, this.image);
 
                 break;

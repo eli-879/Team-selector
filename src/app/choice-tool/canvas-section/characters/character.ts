@@ -97,7 +97,7 @@ export abstract class Character {
         // character attributes
         this.maxHealth = 100;
         this.health = 20;
-        this.dmg = 10;
+        this.dmg = 15;
     }
 
     // Drawing methods

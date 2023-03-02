@@ -457,12 +457,13 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
     private updateVelocities(
         collision: Collision,
         step: number
-    ): [Character, number] | undefined {
+    ): [Character, number, boolean] | undefined {
         const obj1 = collision.getObj1();
         const obj2 = collision.getObj2();
 
-        const rand = Math.floor(Math.random() * 15);
+        const rand = Math.floor(Math.random() * 16);
 
+        const maxHit = obj2.getDmg() === rand ? true : false;
         // make sure that in the collision object, the two colliding objects are not null
         if (obj1 === null || obj2 === null) {
             return undefined;
@@ -483,7 +484,8 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
             this.updateStatus(obj1, obj2);
             this.updateHealth(obj2, rand);
             this.updateChoiceStats(obj2.getID(), rand);
-            return [obj2, rand];
+
+            return [obj2, rand, maxHit];
 
             //vice versa
         } else if (obj1.getAttackTimer() != 0 && obj2.getAttackTimer() == 0) {
@@ -492,7 +494,7 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
             this.updateHealth(obj1, rand);
             this.updateChoiceStats(obj1.getID(), rand);
 
-            return [obj1, rand];
+            return [obj1, rand, maxHit];
 
             // if both characters have their attack ready, it will be a 50/50 on who gets hit
         } else if (obj1.getAttackTimer() == 0 && obj2.getAttackTimer() == 0) {
@@ -504,14 +506,14 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
                 this.updateHealth(obj2, rand);
                 this.updateChoiceStats(obj2.getID(), rand);
 
-                return [obj2, rand];
+                return [obj2, rand, maxHit];
             } else {
                 obj2.hit(obj1, step);
                 this.updateStatus(obj2, obj1);
                 this.updateHealth(obj1, rand);
                 this.updateChoiceStats(obj1.getID(), rand);
 
-                return [obj1, rand];
+                return [obj1, rand, maxHit];
             }
         }
 
@@ -547,7 +549,11 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
             // info contains who was hit and the damage
             const info = this.updateVelocities(collision, step);
             if (info !== undefined) {
-                this.createDamageSplats(info[0].getPosition(), info[1]);
+                this.createDamageSplats(
+                    info[0].getPosition(),
+                    info[1],
+                    info[2]
+                );
             }
         }
     }
@@ -599,11 +605,17 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
     }
 
     // creates damage splat object and appends it to the damage splat list
-    private createDamageSplats(location: Position, damage: number) {
+    private createDamageSplats(
+        location: Position,
+        damage: number,
+        maxHit: boolean
+    ) {
+        console.log(this.assets.damageSplats);
         const damageSplat = new DamageSplat(
             location,
             damage,
-            this.assets.damageSplats
+            this.assets.damageSplats,
+            maxHit
         );
         this.damageSplats.push(damageSplat);
     }

@@ -39,7 +39,19 @@
     background-color: #495a9c;
 }
 
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1400px) {
+    .container__canvas {
+        width: calc(960px * 0.7);
+        height: calc(720px * 0.7);
+    }
+
+    .container {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
     .container__canvas {
         width: 672px;
         height: 504px;
@@ -62,5 +74,9 @@
     .container__canvas {
         width: calc(960px * 0.4);
         height: calc(720px * 0.4);
+    }
+
+    .container__button {
+        font-size: 18px;
     }
 }

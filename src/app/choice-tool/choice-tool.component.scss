@@ -9,7 +9,14 @@
 
 arena-of-choices-choice-input-section,
 arena-of-choices-canvas-section {
-    min-height: 100svh;
+    height: 100svh;
     display: flex;
     background-color: inherit;
+}
+
+@media only screen and (max-width: 1200px) {
+    arena-of-choices-choice-input-section,
+    arena-of-choices-canvas-section {
+        height: auto;
+    }
 }

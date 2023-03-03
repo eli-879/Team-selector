@@ -3,6 +3,7 @@ import {
     ChangeDetectionStrategy,
     Component,
     ElementRef,
+    Renderer2,
     ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,15 +19,16 @@ import { ChoiceToolStore } from '../../store/choice-tool.store';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MakeChoicesCardComponent implements AfterViewInit {
-    @ViewChild('subtext', { static: false })
+    @ViewChild('subtext')
     subtext!: ElementRef;
 
-    constructor(private choiceStore: ChoiceToolStore) {}
+    constructor(
+        private choiceStore: ChoiceToolStore,
+        private renderer: Renderer2
+    ) {}
 
     public ngAfterViewInit(): void {
-        setTimeout(() => {
-            this.createSubtext('Lets go to the arena!');
-        }, 1000);
+        this.createSubtext('Lets go to the arena!');
     }
 
     public onClick() {
@@ -35,21 +37,25 @@ export class MakeChoicesCardComponent implements AfterViewInit {
     }
 
     public createWord(text: string, index: number) {
-        const word = document.createElement('span');
+        const word = this.renderer.createElement('span');
 
         word.innerHTML = `${text}`;
 
         word.classList.add('card-subtext-word');
+        this.renderer.setStyle(word, 'transitionDelay', `${index * 40}ms`);
 
         return word;
     }
 
     public addWord(text: string, index: number) {
-        console.log(this.subtext);
-        this.subtext.nativeElement.appendChild(this.createWord(text, index));
+        this.renderer.appendChild(
+            this.subtext.nativeElement,
+            this.createWord(text, index)
+        );
     }
 
     public createSubtext(text: string) {
-        text.split(' ').map(this.addWord);
+        const boundAddWord = this.addWord.bind(this);
+        text.split(' ').map(boundAddWord);
     }
 }

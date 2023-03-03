@@ -15,9 +15,10 @@
     margin-bottom: 100px;
     padding: 0 10px 0 10px;
     max-height: 100svh;
+    height: 100%;
 }
 
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1200px) {
     .canvas-container {
         flex-direction: column;
         margin: 0;
@@ -44,4 +45,7 @@ arena-of-choices-choice-stat-card {
 
 arena-of-choices-canvas-arena {
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

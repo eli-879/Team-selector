@@ -20,7 +20,7 @@
 @media only screen and (max-width: 1600px) {
     .canvas-container {
         flex-direction: column;
-        padding: 10% 10% 10% 10%;
+        margin: 0;
     }
 
     arena-of-choices-choice-stat-card {
@@ -28,6 +28,10 @@
         max-width: 50%;
 
         padding: 20px 20px 20px 0;
+    }
+
+    .canvas-container__choice-stats {
+        margin: 0 15% 0 15%;
     }
 }
 

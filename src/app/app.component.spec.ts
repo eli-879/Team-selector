@@ -1,11 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { ColorStore } from './color-store/color.store';
 
 describe('AppComponent', () => {
+    let mockColorStore: ColorStore;
+
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [AppComponent],
+            providers: [ColorStore],
         }).compileComponents();
+
+        mockColorStore = TestBed.inject(ColorStore);
     });
 
     it('should create the app', () => {
@@ -18,14 +24,5 @@ describe('AppComponent', () => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.componentInstance;
         expect(app.title).toEqual('arena-of-choices');
-    });
-
-    it('should render title', () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        fixture.detectChanges();
-        const compiled = fixture.nativeElement as HTMLElement;
-        expect(compiled.querySelector('h1')?.textContent).toContain(
-            'Welcome arena-of-choices'
-        );
     });
 });

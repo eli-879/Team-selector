@@ -1,5 +1,4 @@
 import {
-    AfterViewInit,
     ChangeDetectionStrategy,
     Component,
     ElementRef,
@@ -8,25 +7,21 @@ import {
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { QuestionMarkComponent } from './question-mark/question-mark.component';
-import { HackerEffect } from '../utilities/hacker-effect';
+import { HackerEffectDirective } from '../hacker-effect.directive';
 
 @Component({
     selector: 'arena-of-choices-landing-section',
     standalone: true,
-    imports: [CommonModule, NavbarComponent, QuestionMarkComponent],
+    imports: [
+        CommonModule,
+        NavbarComponent,
+        QuestionMarkComponent,
+        HackerEffectDirective,
+    ],
     templateUrl: './landing-section.component.html',
     styleUrls: ['./landing-section.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LandingSectionComponent implements AfterViewInit {
+export class LandingSectionComponent {
     @ViewChild('header') header!: ElementRef;
-    private hackerEffect!: HackerEffect;
-
-    public ngAfterViewInit(): void {
-        this.hackerEffect = new HackerEffect(this.header);
-    }
-
-    public createHackerEffect() {
-        this.hackerEffect.createHackerEffect();
-    }
 }

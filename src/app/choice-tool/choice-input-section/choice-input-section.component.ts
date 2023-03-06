@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChoiceInputTextInputComponent } from './choice-input-text-input/choice-input-text-input.component';
 import { ChoiceToolStore } from '../store/choice-tool.store';
@@ -6,6 +11,7 @@ import { ChoiceInputCardComponent } from './choice-input-card/choice-input-card.
 import { Observable } from 'rxjs/internal/Observable';
 import { ChoiceCard } from 'src/app/core/models/choice-card.interface';
 import { MakeChoicesCardComponent } from './make-choices-card/make-choices-card.component';
+import { HackerEffectDirective } from 'src/app/hacker-effect.directive';
 
 @Component({
     selector: 'arena-of-choices-choice-input-section',
@@ -15,6 +21,7 @@ import { MakeChoicesCardComponent } from './make-choices-card/make-choices-card.
         ChoiceInputTextInputComponent,
         ChoiceInputCardComponent,
         MakeChoicesCardComponent,
+        HackerEffectDirective,
     ],
     templateUrl: './choice-input-section.component.html',
     styleUrls: ['./choice-input-section.component.scss'],

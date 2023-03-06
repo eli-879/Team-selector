@@ -4,6 +4,8 @@ import { CanvasArenaComponent } from './canvas-arena/canvas-arena.component';
 import { ChoiceStatCardComponent } from './choice-stat-card/choice-stat-card.component';
 import { ChoiceToolStore } from '../store/choice-tool.store';
 import { CanvasResultsComponent } from './canvas-results/canvas-results.component';
+import { Observable } from 'rxjs';
+import { ChoiceStats } from 'src/app/core/models/choice-stats.interface';
 
 @Component({
     selector: 'arena-of-choices-canvas-section',
@@ -19,7 +21,10 @@ import { CanvasResultsComponent } from './canvas-results/canvas-results.componen
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CanvasSectionComponent {
-    public choiceStats$ = this.choiceToolStore.choiceStats$;
-    public gameFinished$ = this.choiceToolStore.gameFinished$;
-    constructor(private choiceToolStore: ChoiceToolStore) {}
+    public choiceStats$: Observable<ChoiceStats[]>;
+    public gameFinished$: Observable<boolean>;
+    constructor(private choiceToolStore: ChoiceToolStore) {
+        this.choiceStats$ = this.choiceToolStore.choiceStats$;
+        this.gameFinished$ = this.choiceToolStore.gameFinished$;
+    }
 }

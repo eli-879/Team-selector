@@ -386,10 +386,6 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
         }
     }
 
-    private updateDeathDOM() {
-        // updates list of dead characters based on characters that are in the deathListNames array
-    }
-
     // function that handles moving the characters around and recognising when they are dead
     private updateObjects(step: number) {
         const choiceStats: ChoiceStats[] = [];
@@ -412,7 +408,6 @@ export class CanvasArenaComponent implements OnInit, OnDestroy {
             // if character is dead, push him into dead list and remove him from alive list
             if (character.isDead()) {
                 this.deathListNames.push(character.getName());
-                this.updateDeathDOM();
 
                 character.setStatus(CharacterStates.DEAD);
                 this.deathListObjects.push(character);

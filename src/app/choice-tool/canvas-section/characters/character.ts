@@ -105,7 +105,6 @@ export abstract class Character {
     // Drawing methods
 
     public draw(ctx: CanvasRenderingContext2D, dt: number) {
-        this.imageTimer += dt;
         ctx.fillStyle = '#f00';
         // draws name
         ctx.fillText(
@@ -121,14 +120,7 @@ export abstract class Character {
         }
 
         // decides what to draw depending on state of character
-        this.drawSprite(ctx, this.status);
-
-        // handles sprite images, depending on time length per sprite frame
-        // if timer for frame is up, move to next frame in animation
-        if (this.imageTimer > this.imageTimerMax) {
-            this.col += 1;
-            this.imageTimer = 0;
-        }
+        this.drawSprite(ctx, this.status, dt, this.width, this.height);
     }
 
     // draw health
@@ -159,33 +151,41 @@ export abstract class Character {
         );
     }
 
-    public drawSprite(ctx: CanvasRenderingContext2D, state: CharacterStates) {
+    public drawSprite(
+        ctx: CanvasRenderingContext2D,
+        state: CharacterStates,
+        dt: number,
+        width: number,
+        height: number
+    ) {
+        this.imageTimer += dt;
+
         let sprite;
         switch (state) {
             case CharacterStates.WAITING:
                 sprite = this.getSpriteConstantLoop(CharacterStates.WAITING);
-                this.drawOntoCanvas(ctx, sprite, this.image);
+                this.drawOntoCanvas(ctx, sprite, this.image, width, height);
                 break;
 
             case CharacterStates.RUNNING:
                 sprite = this.getSpriteConstantLoop(CharacterStates.RUNNING);
-                this.drawOntoCanvas(ctx, sprite, this.image);
+                this.drawOntoCanvas(ctx, sprite, this.image, width, height);
                 break;
             case CharacterStates.ATTACKING:
                 sprite = this.getSpriteOneLoop(CharacterStates.ATTACKING);
-                this.drawOntoCanvas(ctx, sprite, this.imageAttacking);
+                this.drawOntoCanvas(
+                    ctx,
+                    sprite,
+                    this.imageAttacking,
+                    width,
+                    height
+                );
 
                 break;
             case CharacterStates.KNOCKBACKED:
                 sprite = this.getSpriteOneLoop(CharacterStates.KNOCKBACKED);
-                // ctx.fillText(
-                //     'KBed',
-                //     this.position.x +
-                //         this.width / 2 -
-                //         ctx.measureText('KBed').width / 2,
-                //     this.position.y - 10
-                // );
-                this.drawOntoCanvas(ctx, sprite, this.image);
+
+                this.drawOntoCanvas(ctx, sprite, this.image, width, height);
 
                 break;
             case CharacterStates.WINNING:
@@ -198,19 +198,105 @@ export abstract class Character {
                         ctx.measureText('WINNER').width / 2,
                     this.position.y - 10
                 );
-                this.drawOntoCanvas(ctx, sprite, this.imageWinning);
+                this.drawOntoCanvas(
+                    ctx,
+                    sprite,
+                    this.imageWinning,
+                    width,
+                    height
+                );
 
                 break;
             case CharacterStates.DEAD:
                 sprite = this.getSpriteOneLoop(CharacterStates.DEAD);
-                this.drawOntoCanvas(ctx, sprite, this.image);
+                this.drawOntoCanvas(ctx, sprite, this.image, width, height);
+        }
+
+        // handles sprite images, depending on time length per sprite frame
+        // if timer for frame is up, move to next frame in animation
+        if (this.imageTimer > this.imageTimerMax) {
+            this.col += 1;
+            this.imageTimer = 0;
+        }
+    }
+
+    public drawSpriteCard(
+        ctx: CanvasRenderingContext2D,
+        state: CharacterStates,
+        dt: number,
+        width: number,
+        height: number
+    ) {
+        this.imageTimer += dt;
+
+        let sprite;
+        switch (state) {
+            case CharacterStates.WAITING:
+                sprite = this.getSpriteConstantLoop(CharacterStates.WAITING);
+                this.drawOntoCanvas(ctx, sprite, this.image, width, height);
+                break;
+
+            case CharacterStates.RUNNING:
+                sprite = this.getSpriteConstantLoop(CharacterStates.RUNNING);
+                this.drawOntoCanvas(ctx, sprite, this.image, width, height);
+                break;
+            case CharacterStates.ATTACKING:
+                sprite = this.getSpriteConstantLoop(CharacterStates.ATTACKING);
+                this.drawOntoCanvas(
+                    ctx,
+                    sprite,
+                    this.imageAttacking,
+                    width,
+                    height
+                );
+
+                break;
+            case CharacterStates.KNOCKBACKED:
+                sprite = this.getSpriteConstantLoop(
+                    CharacterStates.KNOCKBACKED
+                );
+
+                this.drawOntoCanvas(ctx, sprite, this.image, width, height);
+
+                break;
+            case CharacterStates.WINNING:
+                sprite = this.getSpriteConstantLoop(CharacterStates.WINNING);
+                ctx.fillStyle = 'fuchsia';
+                ctx.fillText(
+                    'WINNER',
+                    this.position.x +
+                        this.width / 2 -
+                        ctx.measureText('WINNER').width / 2,
+                    this.position.y - 10
+                );
+                this.drawOntoCanvas(
+                    ctx,
+                    sprite,
+                    this.imageWinning,
+                    width,
+                    height
+                );
+
+                break;
+            case CharacterStates.DEAD:
+                sprite = this.getSpriteOneLoop(CharacterStates.DEAD);
+                this.drawOntoCanvas(ctx, sprite, this.image, width, height);
+        }
+
+        // handles sprite images, depending on time length per sprite frame
+        // if timer for frame is up, move to next frame in animation
+        if (this.imageTimer > this.imageTimerMax) {
+            this.col += 1;
+            this.imageTimer = 0;
         }
     }
 
     public drawOntoCanvas(
         ctx: CanvasRenderingContext2D,
         sprite: Position,
-        image: HTMLImageElement
+        image: HTMLImageElement,
+        width: number,
+        height: number
     ) {
         if (this.facing == Directions.RIGHT) {
             ctx.drawImage(
@@ -221,8 +307,8 @@ export abstract class Character {
                 80,
                 this.position.x,
                 this.position.y,
-                this.width,
-                this.height
+                width,
+                height
             );
         } else {
             ctx.scale(-1, 1);
@@ -234,8 +320,8 @@ export abstract class Character {
                 80,
                 -this.position.x - this.width,
                 this.position.y,
-                this.width,
-                this.height
+                width,
+                height
             );
             ctx.scale(-1, 1);
         }

@@ -1,7 +1,6 @@
 import { ElementRef, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ObserverChildDirective } from './observer-child.directive';
-
+import { HackerEffectDirective } from './hacker-effect.directive';
 const mockElementRef: ElementRef = {
     nativeElement: {},
 };
@@ -12,10 +11,9 @@ beforeEach(() =>
         schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents()
 );
-
-describe('ObserverChildDirective', () => {
+describe('HackerEffectDirective', () => {
     it('should create an instance', () => {
-        const directive = new ObserverChildDirective(mockElementRef);
+        const directive = new HackerEffectDirective(mockElementRef);
         expect(directive).toBeTruthy();
     });
 });

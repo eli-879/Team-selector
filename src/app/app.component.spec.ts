@@ -3,7 +3,7 @@ import { AppComponent } from './app.component';
 import { ColorStore } from './color-store/color.store';
 
 describe('AppComponent', () => {
-    let mockColorStore: ColorStore;
+    let colorStore: ColorStore;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -11,7 +11,7 @@ describe('AppComponent', () => {
             providers: [ColorStore],
         }).compileComponents();
 
-        mockColorStore = TestBed.inject(ColorStore);
+        colorStore = TestBed.inject(ColorStore);
     });
 
     it('should create the app', () => {

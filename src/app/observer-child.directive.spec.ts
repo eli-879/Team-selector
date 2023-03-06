@@ -2,10 +2,8 @@ import { ElementRef, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ObserverChildDirective } from './observer-child.directive';
 
-const mockElementRef: any = {
-    nativeElement: {
-        offsetWidth: 100,
-    },
+const mockElementRef: ElementRef = {
+    nativeElement: {},
 };
 
 beforeEach(() =>

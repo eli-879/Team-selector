@@ -2,21 +2,24 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChoiceInputSectionComponent } from './choice-input-section.component';
 import { ChoiceToolStore } from '../store/choice-tool.store';
+import { ColorStore } from 'src/app/color-store/color.store';
 
 describe('ChoiceInputSectionComponent', () => {
     let component: ChoiceInputSectionComponent;
     let fixture: ComponentFixture<ChoiceInputSectionComponent>;
-    let mockChoiceStore: ChoiceToolStore;
+    let choiceStore: ChoiceToolStore;
+    let colorStore: ColorStore;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [ChoiceInputSectionComponent],
-            providers: [ChoiceToolStore],
+            providers: [ChoiceToolStore, ColorStore],
         }).compileComponents();
 
         fixture = TestBed.createComponent(ChoiceInputSectionComponent);
         component = fixture.componentInstance;
-        mockChoiceStore = TestBed.inject(ChoiceToolStore);
+        choiceStore = TestBed.inject(ChoiceToolStore);
+        colorStore = TestBed.inject(ColorStore);
         fixture.detectChanges();
     });
 

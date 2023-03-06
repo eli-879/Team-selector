@@ -18,6 +18,12 @@ describe('ChoiceInputCardComponent', () => {
 
         fixture = TestBed.createComponent(ChoiceInputCardComponent);
         component = fixture.componentInstance;
+        component.choice = {
+            id: 1,
+            name: 'Burger King',
+            images: [new Image()],
+            type: 'firzen',
+        };
         colorStore = TestBed.inject(ColorStore);
         choiceStore = TestBed.inject(ChoiceToolStore);
         fixture.detectChanges();

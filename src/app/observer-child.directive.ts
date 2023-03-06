@@ -1,9 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
 
-interface ObserverChildContext {
-    observer: IntersectionObserver;
-}
-
 @Directive({
     standalone: true,
     selector: '[arenaOfChoicesObserverChild]',

@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChoiceStatCardComponent } from './choice-stat-card.component';
 import { ColorStore } from 'src/app/color-store/color.store';
+import { CharacterStates } from '../character-properties/character-states.enum';
 
 describe('ChoiceStatCardComponent', () => {
     let component: ChoiceStatCardComponent;
@@ -16,6 +17,15 @@ describe('ChoiceStatCardComponent', () => {
 
         fixture = TestBed.createComponent(ChoiceStatCardComponent);
         component = fixture.componentInstance;
+        component.choiceStat = {
+            id: 1,
+            choice: 'Burger King',
+            health: 100,
+            maxHealth: 100,
+            characterType: 'firzen',
+            images: [new Image()],
+            state: CharacterStates.WAITING,
+        };
         colorStore = TestBed.inject(ColorStore);
         fixture.detectChanges();
     });

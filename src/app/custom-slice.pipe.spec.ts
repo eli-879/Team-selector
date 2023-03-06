@@ -1,4 +1,3 @@
-import * as exp from 'constants';
 import { CustomSlicePipe } from './custom-slice.pipe';
 
 describe('CustomSlicePipe', () => {

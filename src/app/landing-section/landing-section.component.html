@@ -3,7 +3,14 @@
 
     <div class="landing-section__info">
         <div class="landing-section__info-header">
-            <div>Too Many Choices?</div>
+            <div
+                #header
+                class="landing-section__header"
+                data-value="Too Many Choices?"
+                (mouseover)="createHackerEffect()"
+            >
+                Too Many Choices?
+            </div>
         </div>
     </div>
 </div>

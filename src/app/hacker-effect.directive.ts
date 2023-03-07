@@ -1,12 +1,21 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import {
+    AfterViewInit,
+    Directive,
+    ElementRef,
+    HostListener,
+} from '@angular/core';
 
 @Directive({
     selector: '[arenaOfChoicesHackerEffect]',
     standalone: true,
 })
-export class HackerEffectDirective {
+export class HackerEffectDirective implements AfterViewInit {
     private animationRunning = false;
     constructor(private el: ElementRef) {}
+
+    public ngAfterViewInit(): void {
+        this.createHackerEffect(this.el);
+    }
 
     @HostListener('mouseenter')
     public onMouseEnter() {

@@ -12,8 +12,7 @@ import { CustomSlicePipe } from 'src/app/custom-slice.pipe';
 import { ColorPallete } from 'src/app/color-store/types/color-pallete.interface';
 import { Observable } from 'rxjs';
 import { ColorStore } from 'src/app/color-store/color.store';
-import { SortOrder } from 'src/app/choice-tool/store/types/sort-order.type';
-
+import { SortOrder } from '../../../store/types/sort-order.type';
 @Component({
     selector: 'arena-of-choices-choice-result',
     standalone: true,

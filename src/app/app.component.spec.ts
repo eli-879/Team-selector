@@ -1,17 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { ColorStore } from './color-store/color.store';
 
 describe('AppComponent', () => {
-    let colorStore: ColorStore;
-
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [AppComponent],
-            providers: [ColorStore],
+            providers: [],
         }).compileComponents();
-
-        colorStore = TestBed.inject(ColorStore);
     });
 
     it('should create the app', () => {

@@ -7,7 +7,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { QuestionMarkComponent } from './question-mark/question-mark.component';
-import { HackerEffectDirective } from '../hacker-effect.directive';
+import { HackerEffectDirective } from '../../hacker-effect.directive';
 
 @Component({
     selector: 'arena-of-choices-landing-section',

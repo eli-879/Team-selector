@@ -1,9 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    ElementRef,
-    ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChoiceInputTextInputComponent } from './choice-input-text-input/choice-input-text-input.component';
 import { ChoiceToolStore } from '../store/choice-tool.store';

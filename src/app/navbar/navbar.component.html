@@ -1,5 +1,15 @@
 <nav class="navbar">
-    <arena-of-choices-navbar-button
-        [buttonName]="'Arena of Choices'"
-    ></arena-of-choices-navbar-button>
+    <div class="navbar__logo">
+        <arena-of-choices-navbar-button
+            [buttonName]="'Arena of Choices'"
+            route="'home'"
+        ></arena-of-choices-navbar-button>
+    </div>
+
+    <div class="navbar__routes">
+        <arena-of-choices-navbar-button
+            [buttonName]="'Login'"
+            route="login"
+        ></arena-of-choices-navbar-button>
+    </div>
 </nav>

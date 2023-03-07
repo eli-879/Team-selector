@@ -11,8 +11,10 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarButtonComponent {
     @Input() public buttonName: string;
+    @Input() public route: string;
 
     constructor() {
         this.buttonName = '';
+        this.route = '';
     }
 }

@@ -17,7 +17,7 @@ import { ObserverChildDirective } from '../observer-child.directive';
         ObserverChildDirective,
     ],
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css'],
+    styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
     public readonly observer: IntersectionObserver;

@@ -5,7 +5,7 @@ import {
     ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from 'src/app/navbar/navbar.component';
 import { QuestionMarkComponent } from './question-mark/question-mark.component';
 import { HackerEffectDirective } from '../../hacker-effect.directive';
 

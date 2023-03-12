@@ -12,15 +12,14 @@ import { Observable } from 'rxjs';
 import { selectErrorMessage } from '../core/store/selectors/auth.selectors';
 
 @Component({
-    selector: 'arena-of-choices-login',
+    selector: 'arena-of-choices-signup',
     standalone: true,
     imports: [CommonModule, ReactiveFormsModule],
-
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
+    templateUrl: './signup.component.html',
+    styleUrls: ['./signup.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnInit {
+export class SignupComponent implements OnInit {
     public form!: FormGroup;
     public loading = false;
     public submitted = false;
@@ -52,6 +51,6 @@ export class LoginComponent implements OnInit {
             email: this.f['username'].value,
             password: this.f['password'].value,
         };
-        this.authFacade.login(payload);
+        this.authFacade.signup(payload);
     }
 }

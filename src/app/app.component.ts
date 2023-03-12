@@ -6,8 +6,6 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AOCStoreModule } from './core/store/aoc-store.module';
 import { StoreModule, Store } from '@ngrx/store';
-import { HttpClientModule } from '@angular/common/http';
-import { StateObservable } from '@ngrx/store';
 
 @Component({
     standalone: true,
@@ -15,13 +13,7 @@ import { StateObservable } from '@ngrx/store';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        CommonModule,
-        HomeComponent,
-        RouterModule,
-        NavbarComponent,
-        HttpClientModule,
-    ],
+    imports: [CommonModule, HomeComponent, RouterModule, NavbarComponent],
     providers: [ColorStore, AOCStoreModule, Store, StoreModule],
 })
 export class AppComponent {

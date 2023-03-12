@@ -1,37 +1,37 @@
-<div class="login">
-    <div class="login__container">
-        <h1 class="login__header">Login</h1>
-        <div class="login__body">
+<div class="signup">
+    <div class="signup__container">
+        <h1 class="signup__header">Signup</h1>
+        <div class="signup__body">
             <form
-                class="login__form"
+                class="signup__form"
                 [formGroup]="form"
                 (ngSubmit)="onSubmit()"
             >
-                <div class="login__username">
-                    <label class="login__label">Username</label>
+                <div class="signup__username">
+                    <label class="signup__label">Username</label>
                     <input
                         type="text"
                         formControlName="username"
-                        class="login__input"
+                        class="signup__input"
                     />
                 </div>
-                <div class="login__password">
-                    <label class="login__label">Password</label>
+                <div class="signup__password">
+                    <label class="signup__label">Password</label>
                     <input
                         type="text"
                         formControlName="password"
-                        class="login__input"
+                        class="signup__input"
                     />
                 </div>
                 <ng-container *ngIf="errorMessage$ | async; let errorMessage"
-                    ><div class="login__error" *ngIf="errorMessage !== null">
+                    ><div class="signup__error" *ngIf="errorMessage !== null">
                         {{ errorMessage }}
                     </div></ng-container
                 >
 
-                <button [disabled]="loading" class="login__button">
+                <button [disabled]="loading" class="signup__button">
                     <span *ngIf="loading" class="loading__spinner"></span>
-                    Login
+                    Signup
                 </button>
             </form>
         </div>

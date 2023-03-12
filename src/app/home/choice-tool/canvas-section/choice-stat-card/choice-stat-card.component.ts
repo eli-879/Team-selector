@@ -11,7 +11,7 @@ import { ChoiceStats } from 'src/app/core/models/choice-stats.interface';
 import { Observable } from 'rxjs';
 import { ColorPallete } from 'src/app/color-store/types/color-pallete.interface';
 import { ColorStore } from 'src/app/color-store/color.store';
-import { CustomSlicePipe } from 'src/app/custom-slice.pipe';
+import { CustomSlicePipe } from 'src/app/pipes/custom-slice.pipe';
 
 @Component({
     selector: 'arena-of-choices-choice-stat-card',

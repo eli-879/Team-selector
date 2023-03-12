@@ -4,7 +4,7 @@
     background-color: #091540;
 }
 
-.login {
+.signup {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,7 +12,7 @@
     flex-grow: 1;
 }
 
-.login__container {
+.signup__container {
     background-color: #7692ff;
     border: 1px solid black;
 
@@ -23,19 +23,19 @@
     height: 500px;
 }
 
-.login__form {
+.signup__form {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-.login__username,
-.login__password {
+.signup__username,
+.signup__password {
     display: flex;
     flex-direction: column;
 }
 
-.login__input {
+.signup__input {
     padding: 5px;
 
     width: 100%;
@@ -43,7 +43,7 @@
     font-family: 'Permanent Marker', cursive;
 }
 
-.login__button {
+.signup__button {
     background-color: #091540;
     color: #ffffff;
     font-family: 'Permanent Marker', cursive;
@@ -52,6 +52,6 @@
     transition: 0.5s background-color;
 }
 
-.login__button:hover {
+.signup__button:hover {
     background-color: #495a9c;
 }

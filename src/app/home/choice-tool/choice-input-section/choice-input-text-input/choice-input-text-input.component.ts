@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChoiceToolStore } from '../../store/choice-tool.store';
-import { AssetManagerService } from 'src/app/asset-manager.service';
+import { AssetManagerService } from 'src/app/services/asset-manager.service';
 import { ColorStore } from 'src/app/color-store/color.store';
 import { Observable } from 'rxjs';
 import { ColorPallete } from 'src/app/color-store/types/color-pallete.interface';

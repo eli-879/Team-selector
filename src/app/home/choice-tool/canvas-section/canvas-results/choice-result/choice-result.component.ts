@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChoiceResult } from 'src/app/core/models/choice-result.interface';
-import { CustomSlicePipe } from 'src/app/custom-slice.pipe';
+import { CustomSlicePipe } from 'src/app/pipes/custom-slice.pipe';
 import { ColorPallete } from 'src/app/color-store/types/color-pallete.interface';
 import { Observable } from 'rxjs';
 import { ColorStore } from 'src/app/color-store/color.store';

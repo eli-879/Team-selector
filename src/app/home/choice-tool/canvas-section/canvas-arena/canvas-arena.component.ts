@@ -7,7 +7,7 @@ import {
     ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AssetManagerService } from 'src/app/asset-manager.service';
+import { AssetManagerService } from 'src/app/services/asset-manager.service';
 import { ChoiceCard } from 'src/app/core/models/choice-card.interface';
 import { ChoiceToolStore } from '../../store/choice-tool.store';
 import { Position } from '../character-properties/position.interface';

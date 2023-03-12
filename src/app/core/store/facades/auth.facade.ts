@@ -10,4 +10,16 @@ export class AuthFacade {
     public login(loginInfo: User): void {
         this.store.dispatch(actions.login({ user: loginInfo }));
     }
+
+    public signup(signupInfo: User): void {
+        this.store.dispatch(actions.signup({ user: signupInfo }));
+    }
+
+    public logout(): void {
+        this.store.dispatch(actions.logout());
+    }
+
+    public getProfile(): void {
+        this.store.dispatch(actions.getProfile());
+    }
 }

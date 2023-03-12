@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AssetContainer } from './core/models/asset-container.interface';
-import { CharacterAssetType } from './home/choice-tool/store/types/asset-types.type';
-
+import { AssetContainer } from '../core/models/asset-container.interface';
+import { CharacterAssetType } from '../home/choice-tool/store/types/asset-types.type';
 @Injectable({
     providedIn: 'root',
 })

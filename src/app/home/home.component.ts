@@ -5,7 +5,7 @@ import { ChoiceToolComponent } from './choice-tool/choice-tool.component';
 import { Observable } from 'rxjs';
 import { ColorPallete } from '../color-store/types/color-pallete.interface';
 import { ColorStore } from '../color-store/color.store';
-import { ObserverChildDirective } from '../observer-child.directive';
+import { ObserverChildDirective } from '../directives/observer-child.directive';
 
 @Component({
     selector: 'arena-of-choices-home',

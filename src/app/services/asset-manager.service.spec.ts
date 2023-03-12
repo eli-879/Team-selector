@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AssetManagerService } from './asset-manager.service';
-import { AssetContainer } from './core/models/asset-container.interface';
+import { AssetContainer } from '../core/models/asset-container.interface';
 
 describe('AssetManagerService', () => {
     let service: AssetManagerService;

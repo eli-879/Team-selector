@@ -10,3 +10,9 @@ body {
 * {
     box-sizing: border-box;
 }
+
+arena-of-choices-root {
+    display: flex;
+    height: 100svh;
+    flex-direction: column;
+}

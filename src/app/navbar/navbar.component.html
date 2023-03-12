@@ -1,0 +1,37 @@
+<nav class="navbar">
+    <div class="navbar__logo">
+        <arena-of-choices-navbar-button
+            [buttonName]="'Arena of Choices'"
+            route="home"
+        ></arena-of-choices-navbar-button>
+    </div>
+    <div class="navbar__routes-container">
+        <div
+            class="navbar__routes"
+            *ngIf="(isAuthenticated$ | async) === false"
+        >
+            <arena-of-choices-navbar-button
+                [buttonName]="'Login'"
+                route="login"
+            ></arena-of-choices-navbar-button>
+            <arena-of-choices-navbar-button
+                [buttonName]="'Signup'"
+                route="signup"
+            ></arena-of-choices-navbar-button>
+            <arena-of-choices-navbar-button
+                [buttonName]="'Profile'"
+                route="profile"
+            ></arena-of-choices-navbar-button>
+        </div>
+        <div class="navbar__routes" *ngIf="isAuthenticated$ | async">
+            <arena-of-choices-navbar-button
+                [buttonName]="'Logout'"
+                route=""
+            ></arena-of-choices-navbar-button>
+            <arena-of-choices-navbar-button
+                [buttonName]="'Profile'"
+                route="profile"
+            ></arena-of-choices-navbar-button>
+        </div>
+    </div>
+</nav>

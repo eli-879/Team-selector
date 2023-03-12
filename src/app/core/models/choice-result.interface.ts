@@ -1,4 +1,4 @@
-import { CharacterAssetType } from 'src/app/choice-tool/store/types/asset-types.type';
+import { CharacterAssetType } from 'src/app/home/choice-tool/store/types/asset-types.type';
 
 export interface ChoiceResult {
     id: number;

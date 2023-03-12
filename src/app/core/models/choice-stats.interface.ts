@@ -1,5 +1,5 @@
-import { CharacterStates } from 'src/app/choice-tool/canvas-section/character-properties/character-states.enum';
-import { CharacterAssetType } from 'src/app/choice-tool/store/types/asset-types.type';
+import { CharacterStates } from 'src/app/home/choice-tool/canvas-section/character-properties/character-states.enum';
+import { CharacterAssetType } from 'src/app/home/choice-tool/store/types/asset-types.type';
 
 export interface ChoiceStats {
     id: number;

@@ -1,0 +1,39 @@
+<div class="signup">
+    <div class="signup__container">
+        <h1 class="signup__header">Signup</h1>
+        <div class="signup__body">
+            <form
+                class="signup__form"
+                [formGroup]="form"
+                (ngSubmit)="onSubmit()"
+            >
+                <div class="signup__username">
+                    <label class="signup__label">Username</label>
+                    <input
+                        type="text"
+                        formControlName="username"
+                        class="signup__input"
+                    />
+                </div>
+                <div class="signup__password">
+                    <label class="signup__label">Password</label>
+                    <input
+                        type="text"
+                        formControlName="password"
+                        class="signup__input"
+                    />
+                </div>
+                <ng-container *ngIf="errorMessage$ | async; let errorMessage"
+                    ><div class="signup__error" *ngIf="errorMessage !== null">
+                        {{ errorMessage }}
+                    </div></ng-container
+                >
+
+                <button [disabled]="loading" class="signup__button">
+                    <span *ngIf="loading" class="loading__spinner"></span>
+                    Signup
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

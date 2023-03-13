@@ -18,7 +18,10 @@ import { AuthGuardService } from './app/services/auth-guard.service';
 
 bootstrapApplication(AppComponent, {
     providers: [
-        importProvidersFrom(RouterModule.forRoot(APP_ROUTES), HttpClientModule),
+        importProvidersFrom(
+            RouterModule.forRoot(APP_ROUTES, { onSameUrlNavigation: 'reload' }),
+            HttpClientModule
+        ),
         provideStore({ [AOC_STORE_KEY]: authReducer }),
         provideEffects(AuthEffects),
         AuthService,

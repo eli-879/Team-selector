@@ -25,6 +25,7 @@
         </div>
         <div class="navbar__routes" *ngIf="isAuthenticated$ | async">
             <arena-of-choices-navbar-button
+                (onclick)="onLogoutClick()"
                 [buttonName]="'Logout'"
                 route=""
             ></arena-of-choices-navbar-button>

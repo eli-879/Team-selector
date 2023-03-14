@@ -8,7 +8,7 @@ If you have ever had trouble deciding something, this app will make your life ea
 
 ## Set up
 
-Clone repo and run npm install
+Clone repo and run `npm install`
 
 ## Development server
 

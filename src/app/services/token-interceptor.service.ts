@@ -52,7 +52,6 @@ export class ErrorInterceptor implements HttpInterceptor {
                     response.status === 401
                 ) {
                     localStorage.removeItem('token');
-                    this.router.navigateByUrl('/login');
                 }
                 return throwError(() => new Error('error'));
             })

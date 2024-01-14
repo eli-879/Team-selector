@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
 export const APP_ROUTES: Routes = [
@@ -11,7 +10,7 @@ export const APP_ROUTES: Routes = [
     },
     {
         path: 'home',
-        component: HomeComponent,
+        loadComponent: () => import('./home/home.component').then((m) => m.HomeComponent)
     },
     {
         path: 'login',

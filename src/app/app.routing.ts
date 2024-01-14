@@ -5,7 +5,7 @@ export const APP_ROUTES: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'home',
+        redirectTo: '/home',
         runGuardsAndResolvers: 'always',
     },
     {

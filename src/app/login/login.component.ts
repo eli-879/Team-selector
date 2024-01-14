@@ -9,7 +9,11 @@ import {
 import { Store } from '@ngrx/store';
 import { AuthFacade } from '../core/store/facades/auth.facade';
 import { Observable } from 'rxjs';
-import { selectErrorMessage } from '../core/store/selectors/auth.selectors';
+import {
+    selectErrorMessage,
+    selectFetchState,
+} from '../core/store/selectors/auth.selectors';
+import { FetchState } from '../core/models/fetch-state.enum';
 
 @Component({
     selector: 'arena-of-choices-login',
@@ -22,10 +26,9 @@ import { selectErrorMessage } from '../core/store/selectors/auth.selectors';
 })
 export class LoginComponent implements OnInit {
     public form!: FormGroup;
-    public loading = false;
-    public submitted = false;
 
     public errorMessage$: Observable<string | null>;
+    public fetchState$: Observable<FetchState | null>;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -33,6 +36,7 @@ export class LoginComponent implements OnInit {
         private authFacade: AuthFacade
     ) {
         this.errorMessage$ = this.store.select(selectErrorMessage);
+        this.fetchState$ = this.store.select(selectFetchState);
     }
     // convenience getter for easy access to form fields
     get f() {
@@ -47,11 +51,15 @@ export class LoginComponent implements OnInit {
     }
 
     public onSubmit() {
-        console.log(this.f['username'].value, this.f['password'].value);
+        console.log('DSDF');
+
         const payload = {
             email: this.f['username'].value,
             password: this.f['password'].value,
         };
         this.authFacade.login(payload);
+        this.form.reset();
+
+        return;
     }
 }

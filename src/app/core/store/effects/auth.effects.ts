@@ -18,7 +18,6 @@ export class AuthEffects {
     // effects go here
 
     public login$ = createEffect(() => {
-        console.log('effects');
         return this.actions$.pipe(
             ofType(actions.login),
             mergeMap(({ user }) =>
@@ -54,7 +53,12 @@ export class AuthEffects {
 
     public loginFailure$ = createEffect(
         () => {
-            return this.actions$.pipe(ofType(actions.loginFailure));
+            return this.actions$.pipe(
+                ofType(actions.loginFailure),
+                tap(() => {
+                    console.log('failure');
+                })
+            );
         },
         { dispatch: false }
     );
